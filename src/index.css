@@ -191,10 +191,11 @@ section[id], div[id] { scroll-margin-top: 6rem; }
 /* === Мобильная оптимизация и правила переносов === */
 
 /* Ничего не выезжает за правый край на любом устройстве */
-html,
 body {
   max-width: 100%;
-  overflow-x: hidden;
+  /* только clip: overflow-x: hidden сделал бы body контейнером прокрутки
+     и сломал бы position: sticky в секции «Процесс» */
+  overflow-x: clip;
 }
 
 img,
@@ -310,10 +311,6 @@ h4 {
   }
 }
 
-/* Горизонтальная лента шагов не должна создавать боковую прокрутку */
-.sticky-container {
-  overflow-x: clip;
-}
 
 /* Касания вместо курсора: убираем зависание hover-эффектов на тачскринах */
 @media (hover: none) {
@@ -321,4 +318,16 @@ h4 {
   .group:hover .group-hover\:scale-110 {
     transform: none;
   }
+}
+
+/* Защита sticky-анимации «Процесса»: ни один из предков не должен
+   быть контейнером прокрутки, иначе шаги уезжают вверх и остаётся пустота */
+html {
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+#process,
+#process-sticky-container {
+  overflow: visible;
 }

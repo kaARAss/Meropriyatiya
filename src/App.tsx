@@ -129,7 +129,7 @@ export default function App() {
   }, []);
 
   return (
-    <div id="top" className="text-on-surface antialiased overflow-x-hidden  selection:bg-primary-container selection:text-on-primary-container">
+    <div id="top" className="text-on-surface antialiased overflow-x-clip selection:bg-primary-container selection:text-on-primary-container">
       {/* Top Navigation Bar */}
       <header className="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-md border-b border-white/5 transition-all duration-300 ease-in-out">
         <div className="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 w-full max-w-container-max mx-auto">
