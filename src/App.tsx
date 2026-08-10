@@ -119,7 +119,7 @@ export default function App() {
               </h1>
               
               <p className="text-lg md:text-xl font-body-lg text-on-surface-variant mb-12 max-w-2xl leading-relaxed animate-fade-up" style={{ animationDelay: '0.2s' }}>
-                Мы трансформируем ��аши амбиции в безупречную реальность, создавая иммерсивные пространства и незабываемые впечатления для самой взыскательной аудитории.
+                Мы трансформируем ваши амбиции в безупречную реальность, создавая иммерсивные пространства и незабываемые впечатления для самой взыскательной аудитории.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-6 mb-20 animate-fade-up" style={{ animationDelay: '0.3s' }}>
