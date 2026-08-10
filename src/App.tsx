@@ -1,10 +1,71 @@
 import { useEffect, useRef, useState } from 'react';
+import type { FormEvent } from 'react';
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const stickyContainerRef = useRef<HTMLDivElement>(null);
   const stepsWrapperRef = useRef<HTMLDivElement>(null);
   const [activeStep, setActiveStep] = useState(0);
+
+  // —— Форма заявки ——
+  const [form, setForm] = useState({ name: '', phone: '', email: '', date: '', format: '' });
+  const [agree, setAgree] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [sent, setSent] = useState(false);
+
+  const setField = (field: string, value: string) => {
+    setForm(prev => ({ ...prev, [field]: value }));
+    setErrors(prev => {
+      if (!prev[field]) return prev;
+      const next = { ...prev };
+      delete next[field];
+      return next;
+    });
+  };
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    const next: Record<string, string> = {};
+
+    if (!form.name.trim()) next.name = 'Укажите ваше имя';
+    else if (form.name.trim().length < 2) next.name = 'Имя слишком короткое';
+
+    const digits = form.phone.replace(/[^0-9]/g, '');
+    if (!form.phone.trim()) next.phone = 'Укажите телефон';
+    else if (digits.length < 10) next.phone = 'Неполный номер телефона';
+
+    if (!form.email.trim()) next.email = 'Укажите email';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email.trim())) next.email = 'Неверный формат email';
+
+    if (!form.date) next.date = 'Выберите дату';
+    if (!form.format) next.format = 'Выберите формат';
+    if (!agree) next.agree = 'Нужно согласие на обработку данных';
+
+    setErrors(next);
+
+    if (Object.keys(next).length > 0) {
+      setSent(false);
+      window.setTimeout(() => {
+        const first = document.querySelector('[data-invalid="true"]') as HTMLElement | null;
+        if (first) {
+          first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          first.focus({ preventScroll: true });
+        }
+      }, 0);
+      return;
+    }
+
+    setSent(true);
+    setForm({ name: '', phone: '', email: '', date: '', format: '' });
+    setAgree(false);
+  };
+
+  const fieldClass = (invalid: boolean) =>
+    `w-full bg-surface-container/50 border rounded-full px-6 py-4 text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:ring-1 transition-all ${
+      invalid
+        ? 'border-red-500 ring-1 ring-red-500 focus:border-red-500 focus:ring-red-500'
+        : 'border-outline/30 focus:border-primary focus:ring-primary'
+    }`;
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -68,13 +129,18 @@ export default function App() {
   }, []);
 
   return (
-    <div className="text-on-surface antialiased  selection:bg-primary-container selection:text-on-primary-container">
+    <div id="top" className="text-on-surface antialiased  selection:bg-primary-container selection:text-on-primary-container">
       {/* Top Navigation Bar */}
       <header className="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-md border-b border-white/5 transition-all duration-300 ease-in-out">
         <div className="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 w-full max-w-container-max mx-auto">
-          <div className="font-display-lg text-headline-sm tracking-tighter text-primary">
-            AURA EVENTS
-          </div>
+          <a
+            href="#top"
+            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); setIsMenuOpen(false); }}
+            aria-label="Наверх страницы"
+            className="font-display-lg text-headline-sm tracking-tighter text-primary hover:text-primary-fixed transition-colors cursor-pointer select-none"
+          >
+            [ВАШ БРЕНД]
+          </a>
           <nav className="hidden md:flex gap-8">
             <a className="text-on-surface-variant hover:text-primary transition-colors font-body-lg text-body-lg" href="#services">Услуги</a>
             <a className="text-on-surface-variant hover:text-primary transition-colors font-body-lg text-body-lg" href="#cases">Кейсы</a>
@@ -106,7 +172,10 @@ export default function App() {
         {/* Hero Section */}
         <section className="relative min-h-screen flex items-center pt-32 pb-20 px-margin-mobile md:px-margin-desktop overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <div className="w-full h-full bg-cover bg-center opacity-90" style={{ backgroundImage: "url('./images/hero.jpg')" }}></div>
+            <picture>
+              <source type="image/webp" srcSet="./images/hero-1280.webp 1280w, ./images/hero-1920.webp 1920w, ./images/hero-2560.webp 2560w" sizes="100vw" />
+              <img src="./images/hero-fallback.jpg" alt="Праздничный вечер с гостями" fetchPriority="high" decoding="async" className="w-full h-full object-cover object-center opacity-90" />
+            </picture>
             <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/20"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
           </div>
@@ -153,33 +222,58 @@ export default function App() {
         {/* Services Section */}
         <section className="py-section-gap px-margin-mobile md:px-margin-desktop relative overflow-hidden" id="services">
           <div className="absolute inset-0 z-0">
-            <div className="w-full h-full bg-cover bg-center opacity-30" style={{ backgroundImage: "url('./images/services-bg.jpg')" }}></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/50"></div>
+            <div className="w-full h-full bg-cover bg-center opacity-20" style={{ backgroundImage: "url('./images/services-bg.webp')" }}></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-background via-background/85 to-background"></div>
           </div>
+          <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[42rem] h-[42rem] bg-primary/5 rounded-full blur-[140px] pointer-events-none z-0"></div>
           <div className="max-w-container-max mx-auto relative z-10">
-            <div className="mb-16 md:mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
-              <div className="max-w-2xl">
-                <h2 className="font-headline-lg text-headline-lg text-on-surface">Искусство создания идеальных моментов</h2>
+            <div className="mb-14 md:mb-20 max-w-3xl">
+              <div className="flex items-center gap-3 mb-5">
+                <span className="h-px w-10 bg-primary/60"></span>
+                <span className="font-label-caps text-label-caps uppercase tracking-[0.2em] text-primary text-xs">Направления</span>
               </div>
+              <h2 className="font-headline-lg text-headline-lg text-on-surface">Искусство создания идеальных моментов</h2>
+              <p className="font-body-lg text-body-lg text-on-surface-variant mt-6 max-w-2xl">Полный цикл — от концепции и сметы до технического продакшна и работы с гостями в день события.</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-outline/15 rounded-3xl overflow-hidden border border-outline/15">
               {[
-                { icon: 'business_center', title: 'Корпоративы', desc: 'Премиальные корпоративные события, отражающие статус и философию вашего бренда.' },
-                { icon: 'groups', title: 'Конференции', desc: 'Масштабные деловые форумы и конференции с безупречной логистикой и технологичным оснащением.' },
-                { icon: 'festival', title: 'Фестивали', desc: 'Многотысячные музыкальные и культурные фестивали с уникальной концепцией и сценографией.' },
-                { icon: 'favorite', title: 'Свадьбы', desc: 'Эксклюзивные свадебные торжества, где каждая деталь подчеркивает индивидуальность пары.' },
-                { icon: 'campaign', title: 'Активации брендов', desc: 'Креативные интеграции и запуски продуктов, создающие мощный резонанс в медиапространстве.' },
-                { icon: 'memory', title: 'Технический продакшн', desc: 'Передовые мультимедийные решения, кинетические инсталляции и световой дизайн мирового уровня.' }
+                { icon: 'diamond', title: 'Свадьбы', desc: 'Эксклюзивные торжества под ключ: выездная регистрация, декор, банкет и шоу-программа.', meta: 'от 40 до 400 гостей' },
+                { icon: 'celebration', title: 'Юбилеи и торжества', desc: 'Семейные даты с драматургией вечера, живой музыкой и личными смыслами.', meta: 'сценарий под семью' },
+                { icon: 'business_center', title: 'Корпоративы', desc: 'Премиальные корпоративные события, отражающие статус и философию вашего бренда.', meta: 'под ключ' },
+                { icon: 'groups', title: 'Конференции', desc: 'Деловые форумы с безукоризненной логистикой, регистрацией и техническим оснащением.', meta: 'до 2000 участников' },
+                { icon: 'local_florist', title: 'Флористика и декор', desc: 'Авторские флоральные инсталляции, световое оформление и сервировка столов.', meta: 'собственная мастерская' },
+                { icon: 'settings_input_svideo', title: 'Технический продакшн', desc: 'Свет, звук, сцена и медиа: от расчёта схем до монтажа и сопровождения.', meta: 'своё оборудование' }
               ].map((service, idx) => (
-                <div key={idx} className="glass-panel p-8 rounded-2xl border border-primary/20 hover:border-primary/60 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(237,192,110,0.3)] cursor-pointer relative overflow-hidden group">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="w-12 h-12 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 relative z-10">
-                    <span className="material-symbols-outlined text-primary font-light text-[32px]">{service.icon}</span>
+                <div key={idx} className="group relative bg-surface/70 backdrop-blur-sm p-8 lg:p-10 flex flex-col transition-colors duration-500 hover:bg-surface-container/80">
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                  <div className="flex items-start justify-between mb-8">
+                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-primary/10 border border-primary/20 text-primary group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary transition-all duration-500">
+                      <span className="material-symbols-outlined text-[26px] font-light">{service.icon}</span>
+                    </div>
+                    <span className="font-body-md text-xs tabular-nums text-on-surface-variant/40 group-hover:text-primary/70 transition-colors">{String(idx + 1).padStart(2, '0')}</span>
                   </div>
-                  <h3 className="font-headline-md text-2xl text-on-surface mb-3 group-hover:text-primary transition-colors relative z-10">{service.title}</h3>
-                  <p className="font-body-md text-body-md text-on-surface-variant relative z-10">{service.desc}</p>
+
+                  <h3 className="font-headline-md text-xl md:text-2xl text-on-surface mb-3 group-hover:text-primary transition-colors">{service.title}</h3>
+                  <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">{service.desc}</p>
+
+                  <div className="mt-8 pt-6 border-t border-outline/15 flex items-center justify-between gap-4">
+                    <span className="font-label-caps text-[11px] uppercase tracking-[0.14em] text-on-surface-variant/70">{service.meta}</span>
+                    <a href="#contacts" aria-label={`Обсудить: ${service.title}`} className="w-9 h-9 shrink-0 rounded-full border border-outline/30 flex items-center justify-center text-on-surface-variant group-hover:border-primary group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-500">
+                      <span className="material-symbols-outlined text-[18px]">arrow_outward</span>
+                    </a>
+                  </div>
                 </div>
               ))}
+            </div>
+
+            <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-8">
+              <a href="#contacts" className="btn-hover-effect inline-flex items-center gap-3 bg-primary text-on-primary rounded-full px-8 py-4 font-label-caps text-label-caps uppercase tracking-wider">
+                Подобрать формат
+                <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+              </a>
+              <p className="font-body-md text-body-md text-on-surface-variant">Не нашли свой формат? Опишите задачу — предложим решение и смету за 2 дня.</p>
             </div>
           </div>
         </section>
@@ -198,12 +292,12 @@ export default function App() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { img: "./images/case-wedding.jpg", tag: "Свадьбы", title: "Свадьба в загородной резиденции" },
-                { img: "./images/case-anniversary.jpg", tag: "Юбилеи", title: "Юбилей 50 лет в бальном зале" },
-                { img: "./images/case-corporate.jpg", tag: "Корпоративы", title: "Новогодний корпоратив компании" },
-                { img: "./images/case-conference.jpg", tag: "Конференции", title: "Деловой форум на 1200 гостей" },
-                { img: "./images/case-banquet.jpg", tag: "Банкеты", title: "Семейный банкет в саду" },
-                { img: "./images/services-bg.jpg", tag: "Оформление", title: "Флористика и декор торжества" }
+                { img: "./images/case-wedding.webp", tag: "Свадьбы", title: "Свадьба в загородной резиденции" },
+                { img: "./images/case-anniversary.webp", tag: "Юбилеи", title: "Юбилей 50 лет в бальном зале" },
+                { img: "./images/case-corporate.webp", tag: "Корпоративы", title: "Новогодний корпоратив компании" },
+                { img: "./images/case-conference.webp", tag: "Конференции", title: "Деловой форум на 1200 гостей" },
+                { img: "./images/case-banquet.webp", tag: "Банкеты", title: "Семейный банкет в саду" },
+                { img: "./images/case-decor.webp", tag: "Оформление", title: "Флористика и декор торжества" }
               ].map((item, idx) => (
                 <div key={idx} className="relative group overflow-hidden rounded-2xl aspect-[4/3]">
                   <img alt={item.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" src={item.img} />
@@ -220,7 +314,7 @@ export default function App() {
         {/* Process Section (Sticky Scroll) */}
         <section className="relative bg-surface" id="process">
           <div className="absolute inset-0 z-0">
-            <div className="w-full h-full bg-cover bg-center opacity-40" style={{ backgroundImage: "url('./images/case-banquet.jpg')" }}></div>
+            <div className="w-full h-full bg-cover bg-center opacity-40" style={{ backgroundImage: "url('./images/case-banquet.webp')" }}></div>
             <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background"></div>
           </div>
           <div className="relative z-10 py-16 px-margin-mobile md:px-margin-desktop text-center">
@@ -233,10 +327,10 @@ export default function App() {
               
               <div className="steps-wrapper relative z-10" id="process-steps-wrapper" ref={stepsWrapperRef}>
                 {[
-                  { num: '01', title: 'Бриф', desc: 'Глубокое погружение в цели и философию. Мы анализируем каждую деталь, чтобы понять истинную суть вашего бренда или личного запроса.', img: './images/step-1-brief.jpg' },
-                  { num: '02', title: 'Концепция', desc: 'Разработка креативной идеи и визуального стиля. Мы создаем мудборды, скетчи и 3D-визуализации будущего пространства.', img: './images/step-2-concept.jpg' },
-                  { num: '03', title: 'Планирование', desc: 'Детальная смета, логистика и тайминг. Ювелирная точность в расчетах и подборе подрядчиков высочайшего уровня.', img: './images/step-3-planning.jpg' },
-                  { num: '04', title: 'Реализация', desc: 'Безупречный монтаж и контроль на площадке. Наша команда управляет сотнями процессов одновременно для идеального результата.', img: './images/step-4-production.jpg' },
+                  { num: '01', title: 'Бриф', desc: 'Глубокое погружение в цели и философию. Мы анализируем каждую деталь, чтобы понять истинную суть вашего бренда или личного запроса.', img: './images/step-1-brief.webp' },
+                  { num: '02', title: 'Концепция', desc: 'Разработка креативной идеи и визуального стиля. Мы создаем мудборды, скетчи и 3D-визуализации будущего пространства.', img: './images/step-2-concept.webp' },
+                  { num: '03', title: 'Планирование', desc: 'Детальная смета, логистика и тайминг. Ювелирная точность в расчетах и подборе подрядчиков высочайшего уровня.', img: './images/step-3-planning.webp' },
+                  { num: '04', title: 'Реализация', desc: 'Безупречный монтаж и контроль на площадке. Наша команда управляет сотнями процессов одновременно для идеального результата.', img: './images/step-4-production.webp' },
                 ].map((step, idx) => (
                   <div key={idx} className={`step-panel px-margin-mobile md:px-margin-desktop transition-all duration-1000 ease-out`}>
                     <div className="max-w-2xl mx-auto flex flex-col items-center text-center">
@@ -267,7 +361,7 @@ export default function App() {
                     </div>
                     <div className="rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(237,192,110,0.2)] border border-primary/20 relative group">
                       <div className="absolute inset-0 bg-primary/10 mix-blend-overlay z-10 group-hover:opacity-0 transition-opacity duration-700"></div>
-                      <img alt="Первый танец молодожёнов" className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" src="./images/about.jpg" />
+                      <img alt="Первый танец молодожёнов" className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" src="./images/about.webp" />
                     </div>
                   </div>
                 </div>
@@ -285,7 +379,8 @@ export default function App() {
         {/* Combined Why Us & Scales Section with Shared Background */}
         <div className="relative overflow-hidden mt-12">
           <div className="absolute inset-0 z-0">
-            <div className="w-full h-full bg-cover bg-fixed bg-center opacity-40 blur-[4px] scale-105" style={{ backgroundImage: "url('./images/cta-bg.jpg')" }}></div>
+            <div className="w-full h-full bg-cover bg-fixed bg-center opacity-25 blur-[6px] scale-105" style={{ backgroundImage: "url('./images/cta-bg.webp')" }}></div>
+            <div className="absolute inset-0 bg-background/70"></div>
             <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background to-transparent"></div>
             <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent"></div>
           </div>
@@ -350,30 +445,115 @@ export default function App() {
               <h2 className="font-headline-lg text-headline-lg text-on-surface mb-4">Готовы создать легенду?</h2>
               <p className="font-body-lg text-on-surface-variant">Оставьте заявку, и наш продюсер свяжется с вами для обсуждения деталей.</p>
             </div>
-            <form className="max-w-3xl mx-auto">
+            <form className="max-w-3xl mx-auto" onSubmit={handleSubmit} noValidate>
+              <div className="flex flex-col md:flex-row gap-4 mb-4">
+                <div className="flex-1">
+                  <input
+                    className={fieldClass(!!errors.name)}
+                    placeholder="Имя *"
+                    type="text"
+                    value={form.name}
+                    onChange={(e) => setField('name', e.target.value)}
+                    aria-invalid={!!errors.name}
+                    data-invalid={errors.name ? 'true' : undefined}
+                  />
+                  {errors.name && <p className="font-body-md text-xs text-red-400 mt-2 pl-6">{errors.name}</p>}
+                </div>
+                <div className="flex-1">
+                  <input
+                    className={fieldClass(!!errors.phone)}
+                    placeholder="Телефон *"
+                    type="tel"
+                    value={form.phone}
+                    onChange={(e) => setField('phone', e.target.value)}
+                    aria-invalid={!!errors.phone}
+                    data-invalid={errors.phone ? 'true' : undefined}
+                  />
+                  {errors.phone && <p className="font-body-md text-xs text-red-400 mt-2 pl-6">{errors.phone}</p>}
+                </div>
+                <div className="flex-1">
+                  <input
+                    className={fieldClass(!!errors.email)}
+                    placeholder="Email *"
+                    type="email"
+                    value={form.email}
+                    onChange={(e) => setField('email', e.target.value)}
+                    aria-invalid={!!errors.email}
+                    data-invalid={errors.email ? 'true' : undefined}
+                  />
+                  {errors.email && <p className="font-body-md text-xs text-red-400 mt-2 pl-6">{errors.email}</p>}
+                </div>
+              </div>
               <div className="flex flex-col md:flex-row gap-4 mb-6">
-                <input className="flex-1 bg-surface-container/50 border border-outline/30 rounded-full px-6 py-4 text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="Имя" type="text" />
-                <input className="flex-1 bg-surface-container/50 border border-outline/30 rounded-full px-6 py-4 text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="Телефон" type="tel" />
-                <input className="flex-1 bg-surface-container/50 border border-outline/30 rounded-full px-6 py-4 text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="Email" type="email" />
+                <div className="flex-1">
+                  <input
+                    className={`${fieldClass(!!errors.date)} [color-scheme:dark]`}
+                    type="date"
+                    value={form.date}
+                    onChange={(e) => setField('date', e.target.value)}
+                    aria-invalid={!!errors.date}
+                    data-invalid={errors.date ? 'true' : undefined}
+                  />
+                  {errors.date && <p className="font-body-md text-xs text-red-400 mt-2 pl-6">{errors.date}</p>}
+                </div>
+                <div className="flex-1">
+                  <select
+                    className={`${fieldClass(!!errors.format)} appearance-none ${form.format ? 'text-on-surface' : 'text-on-surface-variant'}`}
+                    value={form.format}
+                    onChange={(e) => setField('format', e.target.value)}
+                    aria-invalid={!!errors.format}
+                    data-invalid={errors.format ? 'true' : undefined}
+                  >
+                    <option value="">Формат мероприятия *</option>
+                    <option value="corporate">Корпоратив</option>
+                    <option value="wedding">Свадьба</option>
+                    <option value="anniversary">Юбилей</option>
+                    <option value="conference">Конференция</option>
+                    <option value="other">Другое</option>
+                  </select>
+                  {errors.format && <p className="font-body-md text-xs text-red-400 mt-2 pl-6">{errors.format}</p>}
+                </div>
+                <div className="flex-1">
+                  <button className="w-full bg-primary text-on-primary font-label-caps text-label-caps uppercase tracking-wider rounded-full px-8 py-4 hover:bg-primary-fixed transition-colors btn-hover-effect" type="submit">
+                    Отправить запрос
+                  </button>
+                </div>
               </div>
-              <div className="flex flex-col md:flex-row gap-4 mb-8">
-                <input className="flex-1 bg-surface-container/50 border border-outline/30 rounded-full px-6 py-4 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all [color-scheme:dark]" type="date" />
-                <select className="flex-1 bg-surface-container/50 border border-outline/30 rounded-full px-6 py-4 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all appearance-none" defaultValue="">
-                  <option disabled value="">Формат мероприятия</option>
-                  <option value="corporate">Корпоратив</option>
-                  <option value="wedding">Свадьба</option>
-                  <option value="conference">Конференция</option>
-                  <option value="other">Другое</option>
-                </select>
-                <button className="flex-1 bg-primary text-on-primary font-label-caps text-label-caps uppercase tracking-wider rounded-full px-8 py-4 hover:bg-primary-fixed transition-colors btn-hover-effect" type="button">
-                  Отправить запрос
-                </button>
-              </div>
-              <div className="flex items-center justify-center gap-3">
-                <input className="w-5 h-5 rounded border-outline/30 bg-surface-container/50 text-primary focus:ring-primary focus:ring-offset-background" id="privacy" type="checkbox" />
-                <label className="font-body-md text-sm text-on-surface-variant cursor-pointer" htmlFor="privacy">
-                  Я согласен с политикой обработки персональных данных
-                </label>
+              <div className="flex flex-col items-center gap-2">
+                <div className="flex items-center justify-center gap-3">
+                  <input
+                    className={`w-5 h-5 rounded bg-surface-container/50 text-primary focus:ring-primary focus:ring-offset-background ${errors.agree ? 'border-2 border-red-500 ring-1 ring-red-500' : 'border-outline/30'}`}
+                    id="privacy"
+                    type="checkbox"
+                    checked={agree}
+                    onChange={(e) => {
+                      setAgree(e.target.checked);
+                      if (e.target.checked) setErrors(prev => { const n = { ...prev }; delete n.agree; return n; });
+                    }}
+                    aria-invalid={!!errors.agree}
+                    data-invalid={errors.agree ? 'true' : undefined}
+                  />
+                  <label className={`font-body-md text-sm cursor-pointer ${errors.agree ? 'text-red-400' : 'text-on-surface-variant'}`} htmlFor="privacy">
+                    Я согласен с политикой обработки персональных данных *
+                  </label>
+                </div>
+                {errors.agree && <p className="font-body-md text-xs text-red-400">{errors.agree}</p>}
+
+                {Object.keys(errors).length > 0 && (
+                  <div className="mt-4 w-full rounded-2xl border border-red-500/40 bg-red-500/10 px-6 py-3 text-center">
+                    <p className="font-body-md text-sm text-red-400">
+                      Заполните поля, отмеченные красным — осталось {Object.keys(errors).length} шт.
+                    </p>
+                  </div>
+                )}
+
+                {sent && (
+                  <div className="mt-4 w-full rounded-2xl border border-primary/40 bg-primary/10 px-6 py-3 text-center">
+                    <p className="font-body-md text-sm text-primary">
+                      Заявка отправлена. Наш продюсер свяжется с вами в течение рабочего дня.
+                    </p>
+                  </div>
+                )}
               </div>
             </form>
           </div>
@@ -383,10 +563,10 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-surface-container-lowest w-full py-8 px-margin-mobile md:px-margin-desktop border-t border-primary/20">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 max-w-7xl mx-auto mb-8">
-          <div className="md:col-span-4 flex flex-col">
-            <div className="font-display-lg text-headline-md text-primary mb-4">AURA EVENTS</div>
+      <footer className="bg-surface-container-lowest w-full py-14 px-margin-mobile md:px-margin-desktop border-t border-primary/20">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 w-full max-w-container-max mx-auto mb-12">
+          <div className="md:col-span-4 lg:col-span-3 flex flex-col">
+            <div className="font-display-lg text-headline-md text-primary mb-4">[ВАШ БРЕНД]</div>
             <p className="font-body-md text-on-surface-variant mb-6 max-w-sm leading-relaxed font-light tracking-wide">
               Эксклюзивное агентство по организации мероприятий премиум-класса. Создаем события, которые становятся легендами.
             </p>
@@ -413,7 +593,7 @@ export default function App() {
               </a>
             </div>
           </div>
-          <div className="md:col-span-4 grid grid-cols-2 gap-8">
+          <div className="md:col-span-4 lg:col-span-5 grid grid-cols-2 gap-8 md:gap-12 lg:justify-items-center">
             <div className="flex flex-col gap-4">
               <span className="font-label-caps text-label-caps text-on-surface mb-2 text-primary">Навигация</span>
               <a className="font-body-md text-sm text-on-surface-variant hover:text-primary transition-colors tracking-wide font-medium" href="#services">Услуги</a>
@@ -428,7 +608,7 @@ export default function App() {
               <span className="font-body-md text-sm text-on-surface-variant font-light tracking-wide">Москва, Пресненская наб., 12</span>
             </div>
           </div>
-          <div className="md:col-span-4 rounded-xl overflow-hidden h-64 md:h-full min-h-[16rem] relative border border-primary/20">
+          <div className="md:col-span-4 lg:col-span-4 rounded-xl overflow-hidden h-64 md:h-full min-h-[16rem] relative border border-primary/20">
             <div className="absolute inset-0 bg-surface-container-high flex items-center justify-center">
               <span className="material-symbols-outlined text-primary/40 text-4xl">map</span>
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex items-end p-4">
@@ -439,7 +619,7 @@ export default function App() {
         </div>
         <div className="max-w-container-max mx-auto border-t border-white/5 pt-6 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="font-body-md text-sm text-on-surface-variant">
-            © 2026 AURA EVENTS. ВСЕ ПРАВА ЗАЩИЩЕНЫ.
+            © 2026 [ВАШ БРЕНД]. ВСЕ ПРАВА ЗАЩИЩЕНЫ.
           </div>
           <div className="flex gap-6">
             <a className="font-body-lg text-base text-on-surface-variant hover:text-primary transition-colors" href="#">Политика конфиденциальности</a>

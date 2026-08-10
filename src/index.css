@@ -159,4 +159,14 @@
   animation: fadeUpOnLoad 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   opacity: 0;
 }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  /* отступ под фиксированный верхний меню-бар при переходе по якорям */
+  scroll-padding-top: 6rem;
+}
+body { scroll-behavior: smooth; }
+section[id], div[id] { scroll-margin-top: 6rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  html, body { scroll-behavior: auto; }
+}
