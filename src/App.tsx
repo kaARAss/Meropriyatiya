@@ -285,7 +285,7 @@ export default function App() {
         {/* Combined Why Us & Scales Section with Shared Background */}
         <div className="relative overflow-hidden mt-12">
           <div className="absolute inset-0 z-0">
-            <div className="w-full h-full bg-cover bg-fixed bg-center opacity-30" style={{ backgroundImage: "url('./images/cta-bg.jpg')" }}></div>
+            <div className="w-full h-full bg-cover bg-fixed bg-center opacity-40 blur-[4px] scale-105" style={{ backgroundImage: "url('./images/cta-bg.jpg')" }}></div>
             <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background to-transparent"></div>
             <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent"></div>
           </div>
