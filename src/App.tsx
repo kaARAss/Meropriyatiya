@@ -642,21 +642,21 @@ export default function App() {
 
       {/* Footer */}
       <footer className="bg-surface-container-lowest w-full py-14 px-margin-mobile md:px-margin-desktop border-t border-primary/20">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 w-full max-w-container-max mx-auto mb-12">
-          <div className="md:col-span-4 lg:col-span-3 flex flex-col">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-x-12 md:gap-y-12 lg:gap-x-16 w-full max-w-container-max mx-auto mb-12">
+          <div className="md:col-span-12 lg:col-span-4 flex flex-col">
             <div className="font-display-lg text-headline-md text-primary mb-4">[ВАШ БРЕНД]</div>
             <p className="font-body-md text-on-surface-variant mb-6 max-w-sm leading-relaxed font-light tracking-wide">
               Эксклюзивное агентство по организации мероприятий премиум-класса. Создаем события, которые становятся легендами.
             </p>
             <div className="flex gap-4">
               <a href="#" className="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-colors" title="ВКонтакте">
-                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M6.79 7.3H4.05c.13 6.24 3.25 9.99 8.72 9.99h.31v-3.57c2.01.2 3.53 1.67 4.14 3.57h2.84c-.78-2.84-2.83-4.41-4.11-5.01 1.28-.74 3.08-2.54 3.51-4.98h-2.58c-.56 1.98-2.22 3.78-3.8 3.95V7.3H10.5v6.92c-1.6-.4-3.62-2.34-3.71-6.92Z" />
                 </svg>
               </a>
               <a href="#" className="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-colors" title="Telegram">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.892-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M16.906 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.892-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
                 </svg>
               </a>
               <a href="#" className="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-colors" title="Instagram">
@@ -671,22 +671,20 @@ export default function App() {
               </a>
             </div>
           </div>
-          <div className="md:col-span-4 lg:col-span-5 grid grid-cols-2 gap-8 md:gap-12 lg:justify-items-center">
-            <div className="flex flex-col gap-4">
+          <div className="md:col-span-4 lg:col-span-2 flex flex-col gap-4">
               <span className="font-label-caps text-label-caps text-on-surface mb-2 text-primary">Навигация</span>
               <a className="font-body-md text-sm text-on-surface-variant hover:text-primary transition-colors tracking-wide font-medium" href="#services">Услуги</a>
               <a className="font-body-md text-sm text-on-surface-variant hover:text-primary transition-colors tracking-wide font-medium" href="#cases">Портфолио</a>
               <a className="font-body-md text-sm text-on-surface-variant hover:text-primary transition-colors tracking-wide font-medium" href="#about">О нас</a>
               <a className="font-body-md text-sm text-on-surface-variant hover:text-primary transition-colors tracking-wide font-medium" href="#contacts">Контакты</a>
-            </div>
-            <div className="flex flex-col gap-4">
-              <span className="font-label-caps text-label-caps text-on-surface mb-2 text-primary">Контакты</span>
-              <a className="font-body-md text-sm text-primary hover:text-primary-fixed transition-colors tracking-wide font-medium" href="mailto:hello@auraevents.ru">hello@auraevents.ru</a>
-              <a className="font-body-md text-sm text-on-surface-variant hover:text-primary transition-colors tracking-wide font-medium" href="tel:+74950000000">+7 495 000 00 00</a>
-              <span className="font-body-md text-sm text-on-surface-variant font-light tracking-wide">Москва, Пресненская наб., 12</span>
-            </div>
           </div>
-          <div className="md:col-span-4 lg:col-span-4 rounded-xl overflow-hidden h-64 md:h-full min-h-[16rem] relative border border-primary/20">
+          <div className="md:col-span-4 lg:col-span-3 flex flex-col gap-4">
+            <span className="font-label-caps text-label-caps text-on-surface mb-2 text-primary">Контакты</span>
+            <a className="font-body-md text-sm text-primary hover:text-primary-fixed transition-colors tracking-wide font-medium" href="mailto:hello@auraevents.ru">hello@auraevents.ru</a>
+            <a className="font-body-md text-sm text-on-surface-variant hover:text-primary transition-colors tracking-wide font-medium" href="tel:+74950000000">+7 495 000 00 00</a>
+            <span className="font-body-md text-sm text-on-surface-variant font-light tracking-wide">Москва, Пресненская наб., 12</span>
+          </div>
+          <div className="md:col-span-4 lg:col-span-3 rounded-xl overflow-hidden h-64 md:h-full min-h-[16rem] relative border border-primary/20">
             <div className="absolute inset-0 bg-surface-container-high flex items-center justify-center">
               <span className="material-symbols-outlined text-primary/40 text-4xl">map</span>
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex items-end p-4">
@@ -695,7 +693,7 @@ export default function App() {
             </div>
           </div>
         </div>
-        <div className="max-w-container-max mx-auto border-t border-white/5 pt-6 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="w-full max-w-container-max mx-auto border-t border-white/5 pt-6 flex flex-col md:flex-row md:justify-between md:items-center gap-6">
           <div className="font-body-md text-sm text-on-surface-variant">
             © 2026 [ВАШ БРЕНД]. ВСЕ ПРАВА ЗАЩИЩЕНЫ.
           </div>
