@@ -236,7 +236,7 @@ export default function App() {
               <p className="font-body-lg text-body-lg text-on-surface-variant mt-6 max-w-2xl">Полный цикл — от концепции и сметы до технического продакшна и работы с гостями в день события.</p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-outline/15 rounded-3xl overflow-hidden border border-outline/15">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {[
                 { icon: 'diamond', title: 'Свадьбы', desc: 'Эксклюзивные торжества под ключ: выездная регистрация, декор, банкет и шоу-программа.', meta: 'от 40 до 400 гостей' },
                 { icon: 'celebration', title: 'Юбилеи и торжества', desc: 'Семейные даты с драматургией вечера, живой музыкой и личными смыслами.', meta: 'сценарий под семью' },
@@ -245,35 +245,64 @@ export default function App() {
                 { icon: 'local_florist', title: 'Флористика и декор', desc: 'Авторские флоральные инсталляции, световое оформление и сервировка столов.', meta: 'собственная мастерская' },
                 { icon: 'settings_input_svideo', title: 'Технический продакшн', desc: 'Свет, звук, сцена и медиа: от расчёта схем до монтажа и сопровождения.', meta: 'своё оборудование' }
               ].map((service, idx) => (
-                <div key={idx} className="group relative bg-surface/70 backdrop-blur-sm p-8 lg:p-10 flex flex-col transition-colors duration-500 hover:bg-surface-container/80">
-                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <a
+                  key={idx}
+                  href="#contacts"
+                  className="group relative flex flex-col rounded-[28px] p-[1px] bg-gradient-to-b from-outline/25 via-outline/10 to-transparent hover:from-primary/60 hover:via-primary/20 transition-all duration-500 hover:-translate-y-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-background motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+                >
+                  <div className="relative flex h-full flex-col overflow-hidden rounded-[27px] bg-surface/90 backdrop-blur-md p-8 lg:p-9 shadow-[0_2px_20px_-8px_rgba(0,0,0,0.6)] group-hover:shadow-[0_24px_60px_-24px_rgba(237,192,110,0.35)] transition-shadow duration-500">
+                    <div className="pointer-events-none absolute -top-24 -right-16 h-56 w-56 rounded-full bg-primary/10 blur-[70px] opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <span className="pointer-events-none absolute top-6 right-7 font-display-lg text-6xl leading-none text-on-surface/[0.06] group-hover:text-primary/15 transition-colors duration-500 select-none tabular-nums">
+                      {String(idx + 1).padStart(2, '0')}
+                    </span>
 
-                  <div className="flex items-start justify-between mb-8">
-                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-primary/10 border border-primary/20 text-primary group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary transition-all duration-500">
-                      <span className="material-symbols-outlined text-[26px] font-light">{service.icon}</span>
+                    <div className="relative mb-8 h-16 w-16 shrink-0">
+                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/25 to-primary/5 border border-primary/25 group-hover:from-primary group-hover:to-primary-fixed group-hover:border-primary transition-all duration-500"></div>
+                      <div className="absolute inset-0 rounded-2xl bg-primary/30 blur-xl opacity-0 group-hover:opacity-70 transition-opacity duration-500"></div>
+                      <span className="material-symbols-outlined relative z-10 flex h-full w-full items-center justify-center text-[30px] font-light text-primary group-hover:text-on-primary transition-colors duration-500">
+                        {service.icon}
+                      </span>
                     </div>
-                    <span className="font-body-md text-xs tabular-nums text-on-surface-variant/40 group-hover:text-primary/70 transition-colors">{String(idx + 1).padStart(2, '0')}</span>
-                  </div>
 
-                  <h3 className="font-headline-md text-xl md:text-2xl text-on-surface mb-3 group-hover:text-primary transition-colors">{service.title}</h3>
-                  <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">{service.desc}</p>
+                    <h3 className="relative font-headline-md text-2xl lg:text-[26px] leading-snug text-on-surface mb-4 group-hover:text-primary transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                    <p className="relative font-body-md text-body-md text-on-surface-variant leading-relaxed mb-8">
+                      {service.desc}
+                    </p>
 
-                  <div className="mt-8 pt-6 border-t border-outline/15 flex items-center justify-between gap-4">
-                    <span className="font-label-caps text-[11px] uppercase tracking-[0.14em] text-on-surface-variant/70">{service.meta}</span>
-                    <a href="#contacts" aria-label={`Обсудить: ${service.title}`} className="w-9 h-9 shrink-0 rounded-full border border-outline/30 flex items-center justify-center text-on-surface-variant group-hover:border-primary group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-500">
-                      <span className="material-symbols-outlined text-[18px]">arrow_outward</span>
-                    </a>
+                    <div className="relative mt-auto flex items-center justify-between gap-4 pt-6 border-t border-outline/15 group-hover:border-primary/25 transition-colors duration-500">
+                      <span className="inline-flex items-center rounded-full bg-primary/10 px-4 py-2 font-label-caps text-[11px] uppercase tracking-[0.14em] text-primary/90 group-hover:bg-primary/20 transition-colors duration-500">
+                        {service.meta}
+                      </span>
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-outline/30 text-on-surface-variant group-hover:border-primary group-hover:bg-primary group-hover:text-on-primary group-hover:rotate-45 transition-all duration-500 motion-reduce:transition-none">
+                        <span className="material-symbols-outlined text-[20px]">arrow_upward</span>
+                      </span>
+                    </div>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
 
-            <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-8">
-              <a href="#contacts" className="btn-hover-effect inline-flex items-center gap-3 bg-primary text-on-primary rounded-full px-8 py-4 font-label-caps text-label-caps uppercase tracking-wider">
-                Подобрать формат
-                <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
-              </a>
-              <p className="font-body-md text-body-md text-on-surface-variant">Не нашли свой формат? Опишите задачу — предложим решение и смету за 2 дня.</p>
+            <div className="mt-14 lg:mt-16 relative overflow-hidden rounded-[28px] border border-primary/20 bg-gradient-to-r from-primary/[0.07] via-surface/60 to-transparent px-8 py-9 lg:px-12 lg:py-11">
+              <div className="pointer-events-none absolute -left-20 top-1/2 -translate-y-1/2 h-72 w-72 rounded-full bg-primary/10 blur-[90px]"></div>
+              <div className="relative flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+                <div className="max-w-xl">
+                  <h3 className="font-headline-md text-2xl lg:text-3xl text-on-surface mb-3">Не нашли свой формат?</h3>
+                  <p className="font-body-lg text-lg lg:text-xl text-on-surface/90 leading-relaxed">
+                    Опишите задачу — предложим решение и смету за <span className="text-primary font-medium">2 дня</span>.
+                  </p>
+                </div>
+                <a
+                  href="#contacts"
+                  className="btn-hover-effect group inline-flex shrink-0 items-center justify-center gap-4 rounded-full bg-primary px-10 py-5 lg:px-12 lg:py-6 font-label-caps text-base lg:text-lg font-semibold uppercase tracking-[0.12em] text-on-primary shadow-[0_16px_40px_-14px_rgba(237,192,110,0.6)] hover:bg-primary-fixed hover:shadow-[0_22px_60px_-14px_rgba(237,192,110,0.8)] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-background transition-all duration-300 motion-reduce:transition-none"
+                >
+                  Подобрать формат
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-on-primary/15 group-hover:bg-on-primary/25 group-hover:translate-x-1 transition-all duration-300">
+                    <span className="material-symbols-outlined text-[22px]">arrow_forward</span>
+                  </span>
+                </a>
+              </div>
             </div>
           </div>
         </section>
@@ -519,10 +548,19 @@ export default function App() {
                   </button>
                 </div>
               </div>
-              <div className="flex flex-col items-center gap-2">
-                <div className="flex items-center justify-center gap-3">
+              <div className="flex flex-col gap-3">
+                <label
+                  htmlFor="privacy"
+                  className={`group flex items-start gap-4 cursor-pointer select-none rounded-2xl border px-5 py-4 transition-all duration-200 ${
+                    errors.agree
+                      ? 'border-red-500/70 bg-red-500/5'
+                      : agree
+                        ? 'border-primary/50 bg-primary/5'
+                        : 'border-outline/25 bg-surface-container/30 hover:border-outline/50 hover:bg-surface-container/50'
+                  }`}
+                >
                   <input
-                    className={`w-5 h-5 rounded bg-surface-container/50 text-primary focus:ring-primary focus:ring-offset-background ${errors.agree ? 'border-2 border-red-500 ring-1 ring-red-500' : 'border-outline/30'}`}
+                    className="peer sr-only"
                     id="privacy"
                     type="checkbox"
                     checked={agree}
@@ -530,14 +568,50 @@ export default function App() {
                       setAgree(e.target.checked);
                       if (e.target.checked) setErrors(prev => { const n = { ...prev }; delete n.agree; return n; });
                     }}
+                    aria-describedby="privacy-error"
                     aria-invalid={!!errors.agree}
                     data-invalid={errors.agree ? 'true' : undefined}
                   />
-                  <label className={`font-body-md text-sm cursor-pointer ${errors.agree ? 'text-red-400' : 'text-on-surface-variant'}`} htmlFor="privacy">
-                    Я согласен с политикой обработки персональных данных *
-                  </label>
-                </div>
-                {errors.agree && <p className="font-body-md text-xs text-red-400">{errors.agree}</p>}
+                  <span
+                    aria-hidden="true"
+                    className={`mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-lg border-2 transition-all duration-200 peer-focus-visible:ring-2 peer-focus-visible:ring-primary peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-background ${
+                      agree
+                        ? 'border-primary bg-primary scale-100'
+                        : errors.agree
+                          ? 'border-red-500 bg-transparent'
+                          : 'border-outline/50 bg-transparent group-hover:border-primary/70'
+                    }`}
+                  >
+                    <svg
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className={`h-4 w-4 text-on-primary transition-all duration-200 motion-reduce:transition-none ${
+                        agree ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
+                      }`}
+                    >
+                      <path d="M4 10.5 8 14.5 16 6" />
+                    </svg>
+                  </span>
+                  <span className="flex flex-col gap-1 text-left">
+                    <span className={`font-body-md text-sm leading-relaxed transition-colors duration-200 ${errors.agree ? 'text-red-400' : 'text-on-surface'}`}>
+                      Я согласен с обработкой персональных данных
+                      <span className="text-primary"> *</span>
+                    </span>
+                    <span className="font-body-md text-xs text-on-surface-variant/80 leading-relaxed">
+                      Мы используем данные только для связи по вашей заявке и не передаём их третьим лицам.
+                    </span>
+                  </span>
+                </label>
+                {errors.agree && (
+                  <p id="privacy-error" role="alert" className="font-body-md text-xs text-red-400 flex items-center gap-1.5 pl-1">
+                    <span className="material-symbols-outlined text-[14px]">error</span>
+                    {errors.agree}
+                  </p>
+                )}
 
                 {Object.keys(errors).length > 0 && (
                   <div className="mt-4 w-full rounded-2xl border border-red-500/40 bg-red-500/10 px-6 py-3 text-center">
