@@ -238,12 +238,12 @@ export default function App() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {[
-                { icon: 'diamond', img: './images/srv-wedding.webp', alt: 'Свадебная арка с орхидеями и свечами в сумерках', title: 'Свадьбы', desc: 'Эксклюзивные торжества под ключ: выездная регистрация, декор, банкет и шоу-программа.', meta: 'от 40 до 400 гостей' },
-                { icon: 'celebration', img: './images/srv-anniversary.webp', alt: 'Праздничный торт и бокалы шампанского при свечах', title: 'Юбилеи и торжества', desc: 'Семейные даты с драматургией вечера, живой музыкой и личными смыслами.', meta: 'сценарий под семью' },
-                { icon: 'business_center', img: './images/srv-corporate.webp', alt: 'Гости корпоративного вечера в современном зале', title: 'Корпоративы', desc: 'Премиальные корпоративные события, отражающие статус и философию вашего бренда.', meta: 'под ключ' },
-                { icon: 'groups', img: './images/srv-conference.webp', alt: 'Конференц-зал с подсвеченной сценой', title: 'Конференции', desc: 'Деловые форумы с безукоризненной логистикой, регистрацией и техническим оснащением.', meta: 'до 2000 участников' },
-                { icon: 'local_florist', img: './images/srv-decor.webp', alt: 'Флорист собирает композицию из белых роз', title: 'Флористика и декор', desc: 'Авторские флоральные инсталляции, световое оформление и сервировка столов.', meta: 'собственная мастерская' },
-                { icon: 'settings_input_svideo', img: './images/srv-production.webp', alt: 'Сценические прожекторы и световой пульт', title: 'Технический продакшн', desc: 'Свет, звук, сцена и медиа: от расчёта схем до монтажа и сопровождения.', meta: 'своё оборудование' }
+                { img: './images/srv-wedding.webp', alt: 'Свадебная арка с орхидеями и свечами в сумерках', title: 'Свадьбы', desc: 'Эксклюзивные торжества под ключ: выездная регистрация, декор, банкет и шоу-программа.', meta: 'от 40 до 400 гостей' },
+                { img: './images/srv-anniversary.webp', alt: 'Праздничный торт и бокалы шампанского при свечах', title: 'Юбилеи и торжества', desc: 'Семейные даты с драматургией вечера, живой музыкой и личными смыслами.', meta: 'сценарий под семью' },
+                { img: './images/srv-corporate.webp', alt: 'Гости корпоративного вечера в современном зале', title: 'Корпоративы', desc: 'Премиальные корпоративные события, отражающие статус и философию вашего бренда.', meta: 'под ключ' },
+                { img: './images/srv-conference.webp', alt: 'Конференц-зал с подсвеченной сценой', title: 'Конференции', desc: 'Деловые форумы с безукоризненной логистикой, регистрацией и техническим оснащением.', meta: 'до 2000 участников' },
+                { img: './images/srv-decor.webp', alt: 'Флорист собирает композицию из белых роз', title: 'Флористика и декор', desc: 'Авторские флоральные инсталляции, световое оформление и сервировка столов.', meta: 'собственная мастерская' },
+                { img: './images/srv-production.webp', alt: 'Сценические прожекторы и световой пульт', title: 'Технический продакшн', desc: 'Свет, звук, сцена и медиа: от расчёта схем до монтажа и сопровождения.', meta: 'своё оборудование' }
               ].map((service, idx) => (
                 <a
                   key={idx}
@@ -262,19 +262,9 @@ export default function App() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
                       <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
-                      <span className="pointer-events-none absolute top-4 right-6 font-display-lg text-5xl leading-none text-on-surface/25 group-hover:text-primary/50 transition-colors duration-500 select-none tabular-nums drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
-                        {String(idx + 1).padStart(2, '0')}
-                      </span>
-                      <div className="absolute -bottom-7 left-8 h-14 w-14">
-                        <div className="absolute inset-0 rounded-2xl bg-surface-container border border-primary/25 group-hover:bg-primary group-hover:border-primary transition-all duration-500"></div>
-                        <div className="absolute inset-0 rounded-2xl bg-primary/40 blur-lg opacity-0 group-hover:opacity-60 transition-opacity duration-500"></div>
-                        <span className="material-symbols-outlined relative z-10 flex h-full w-full items-center justify-center text-[26px] font-light text-primary group-hover:text-on-primary transition-colors duration-500">
-                          {service.icon}
-                        </span>
-                      </div>
                     </div>
 
-                    <div className="flex flex-1 flex-col p-8 pt-12 lg:p-9 lg:pt-12">
+                    <div className="flex flex-1 flex-col p-8 lg:p-9">
                       <h3 className="font-headline-md text-2xl lg:text-[26px] leading-snug text-on-surface mb-4 group-hover:text-primary transition-colors duration-300">
                         {service.title}
                       </h3>
