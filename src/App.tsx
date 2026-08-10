@@ -238,51 +238,64 @@ export default function App() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {[
-                { icon: 'diamond', title: 'Свадьбы', desc: 'Эксклюзивные торжества под ключ: выездная регистрация, декор, банкет и шоу-программа.', meta: 'от 40 до 400 гостей' },
-                { icon: 'celebration', title: 'Юбилеи и торжества', desc: 'Семейные даты с драматургией вечера, живой музыкой и личными смыслами.', meta: 'сценарий под семью' },
-                { icon: 'business_center', title: 'Корпоративы', desc: 'Премиальные корпоративные события, отражающие статус и философию вашего бренда.', meta: 'под ключ' },
-                { icon: 'groups', title: 'Конференции', desc: 'Деловые форумы с безукоризненной логистикой, регистрацией и техническим оснащением.', meta: 'до 2000 участников' },
-                { icon: 'local_florist', title: 'Флористика и декор', desc: 'Авторские флоральные инсталляции, световое оформление и сервировка столов.', meta: 'собственная мастерская' },
-                { icon: 'settings_input_svideo', title: 'Технический продакшн', desc: 'Свет, звук, сцена и медиа: от расчёта схем до монтажа и сопровождения.', meta: 'своё оборудование' }
+                { icon: 'diamond', img: './images/srv-wedding.webp', alt: 'Свадебная арка с орхидеями и свечами в сумерках', title: 'Свадьбы', desc: 'Эксклюзивные торжества под ключ: выездная регистрация, декор, банкет и шоу-программа.', meta: 'от 40 до 400 гостей' },
+                { icon: 'celebration', img: './images/srv-anniversary.webp', alt: 'Праздничный торт и бокалы шампанского при свечах', title: 'Юбилеи и торжества', desc: 'Семейные даты с драматургией вечера, живой музыкой и личными смыслами.', meta: 'сценарий под семью' },
+                { icon: 'business_center', img: './images/srv-corporate.webp', alt: 'Гости корпоративного вечера в современном зале', title: 'Корпоративы', desc: 'Премиальные корпоративные события, отражающие статус и философию вашего бренда.', meta: 'под ключ' },
+                { icon: 'groups', img: './images/srv-conference.webp', alt: 'Конференц-зал с подсвеченной сценой', title: 'Конференции', desc: 'Деловые форумы с безукоризненной логистикой, регистрацией и техническим оснащением.', meta: 'до 2000 участников' },
+                { icon: 'local_florist', img: './images/srv-decor.webp', alt: 'Флорист собирает композицию из белых роз', title: 'Флористика и декор', desc: 'Авторские флоральные инсталляции, световое оформление и сервировка столов.', meta: 'собственная мастерская' },
+                { icon: 'settings_input_svideo', img: './images/srv-production.webp', alt: 'Сценические прожекторы и световой пульт', title: 'Технический продакшн', desc: 'Свет, звук, сцена и медиа: от расчёта схем до монтажа и сопровождения.', meta: 'своё оборудование' }
               ].map((service, idx) => (
                 <a
                   key={idx}
                   href="#contacts"
                   className="group relative flex flex-col rounded-[28px] p-[1px] bg-gradient-to-b from-outline/25 via-outline/10 to-transparent hover:from-primary/60 hover:via-primary/20 transition-all duration-500 hover:-translate-y-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-background motion-reduce:transition-none motion-reduce:hover:translate-y-0"
                 >
-                  <div className="relative flex h-full flex-col overflow-hidden rounded-[27px] bg-surface/90 backdrop-blur-md p-8 lg:p-9 shadow-[0_2px_20px_-8px_rgba(0,0,0,0.6)] group-hover:shadow-[0_24px_60px_-24px_rgba(237,192,110,0.35)] transition-shadow duration-500">
-                    <div className="pointer-events-none absolute -top-24 -right-16 h-56 w-56 rounded-full bg-primary/10 blur-[70px] opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                    <span className="pointer-events-none absolute top-6 right-7 font-display-lg text-6xl leading-none text-on-surface/[0.06] group-hover:text-primary/15 transition-colors duration-500 select-none tabular-nums">
-                      {String(idx + 1).padStart(2, '0')}
-                    </span>
+                  <div className="relative flex h-full flex-col overflow-hidden rounded-[27px] bg-surface/90 backdrop-blur-md shadow-[0_2px_20px_-8px_rgba(0,0,0,0.6)] group-hover:shadow-[0_24px_60px_-24px_rgba(237,192,110,0.35)] transition-shadow duration-500">
 
-                    <div className="relative mb-8 h-16 w-16 shrink-0">
-                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/25 to-primary/5 border border-primary/25 group-hover:from-primary group-hover:to-primary-fixed group-hover:border-primary transition-all duration-500"></div>
-                      <div className="absolute inset-0 rounded-2xl bg-primary/30 blur-xl opacity-0 group-hover:opacity-70 transition-opacity duration-500"></div>
-                      <span className="material-symbols-outlined relative z-10 flex h-full w-full items-center justify-center text-[30px] font-light text-primary group-hover:text-on-primary transition-colors duration-500">
-                        {service.icon}
+                    <div className="relative h-48 lg:h-52 shrink-0 overflow-hidden">
+                      <img
+                        src={service.img}
+                        alt={service.alt}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.07] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
+                      <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
+                      <span className="pointer-events-none absolute top-4 right-6 font-display-lg text-5xl leading-none text-on-surface/25 group-hover:text-primary/50 transition-colors duration-500 select-none tabular-nums drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
+                        {String(idx + 1).padStart(2, '0')}
                       </span>
+                      <div className="absolute -bottom-7 left-8 h-14 w-14">
+                        <div className="absolute inset-0 rounded-2xl bg-surface-container border border-primary/25 group-hover:bg-primary group-hover:border-primary transition-all duration-500"></div>
+                        <div className="absolute inset-0 rounded-2xl bg-primary/40 blur-lg opacity-0 group-hover:opacity-60 transition-opacity duration-500"></div>
+                        <span className="material-symbols-outlined relative z-10 flex h-full w-full items-center justify-center text-[26px] font-light text-primary group-hover:text-on-primary transition-colors duration-500">
+                          {service.icon}
+                        </span>
+                      </div>
                     </div>
 
-                    <h3 className="relative font-headline-md text-2xl lg:text-[26px] leading-snug text-on-surface mb-4 group-hover:text-primary transition-colors duration-300">
-                      {service.title}
-                    </h3>
-                    <p className="relative font-body-md text-body-md text-on-surface-variant leading-relaxed mb-8">
-                      {service.desc}
-                    </p>
+                    <div className="flex flex-1 flex-col p-8 pt-12 lg:p-9 lg:pt-12">
+                      <h3 className="font-headline-md text-2xl lg:text-[26px] leading-snug text-on-surface mb-4 group-hover:text-primary transition-colors duration-300">
+                        {service.title}
+                      </h3>
+                      <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-8">
+                        {service.desc}
+                      </p>
 
-                    <div className="relative mt-auto flex items-center justify-between gap-4 pt-6 border-t border-outline/15 group-hover:border-primary/25 transition-colors duration-500">
-                      <span className="inline-flex items-center rounded-full bg-primary/10 px-4 py-2 font-label-caps text-[11px] uppercase tracking-[0.14em] text-primary/90 group-hover:bg-primary/20 transition-colors duration-500">
-                        {service.meta}
-                      </span>
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-outline/30 text-on-surface-variant group-hover:border-primary group-hover:bg-primary group-hover:text-on-primary group-hover:rotate-45 transition-all duration-500 motion-reduce:transition-none">
-                        <span className="material-symbols-outlined text-[20px]">arrow_upward</span>
-                      </span>
+                      <div className="mt-auto flex items-center justify-between gap-4 pt-6 border-t border-outline/15 group-hover:border-primary/25 transition-colors duration-500">
+                        <span className="inline-flex items-center rounded-full bg-primary/10 px-4 py-2 font-label-caps text-[11px] uppercase tracking-[0.14em] text-primary/90 group-hover:bg-primary/20 transition-colors duration-500">
+                          {service.meta}
+                        </span>
+                        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-outline/30 text-on-surface-variant group-hover:border-primary group-hover:bg-primary group-hover:text-on-primary group-hover:rotate-45 transition-all duration-500 motion-reduce:transition-none">
+                          <span className="material-symbols-outlined text-[20px]">arrow_upward</span>
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </a>
               ))}
             </div>
+
 
             <div className="mt-14 lg:mt-16 relative overflow-hidden rounded-[28px] border border-primary/20 bg-gradient-to-r from-primary/[0.07] via-surface/60 to-transparent px-8 py-9 lg:px-12 lg:py-11">
               <div className="pointer-events-none absolute -left-20 top-1/2 -translate-y-1/2 h-72 w-72 rounded-full bg-primary/10 blur-[90px]"></div>
