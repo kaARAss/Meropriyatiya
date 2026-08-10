@@ -349,8 +349,9 @@ export default function App() {
             <div className="w-full h-full bg-cover bg-center opacity-40" style={{ backgroundImage: "url('./images/case-banquet.webp')" }}></div>
             <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background"></div>
           </div>
-          <div className="relative z-10 py-16 px-margin-mobile md:px-margin-desktop text-center">
-            <h2 className="font-headline-lg text-headline-lg text-on-surface">Как мы создаем легенды</h2>
+          <div className="process-heading relative z-30 pt-16 pb-8 px-margin-mobile md:px-margin-desktop text-center pointer-events-none">
+            <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-transparent"></div>
+            <h2 className="relative font-headline-lg text-headline-lg text-on-surface drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)]">Как мы создаем легенды?</h2>
           </div>
           <div className="sticky-container" id="process-sticky-container" ref={stickyContainerRef}>
             <div className="sticky-content">

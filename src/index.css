@@ -170,3 +170,20 @@ section[id], div[id] { scroll-margin-top: 6rem; }
 @media (prefers-reduced-motion: reduce) {
   html, body { scroll-behavior: auto; }
 }
+
+/* Заголовок секции «Процесс»: держится сверху, пока идёт горизонтальная прокрутка шагов */
+.process-heading {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 4.5rem;
+}
+
+@media (min-width: 768px) {
+  .process-heading {
+    top: 5rem;
+  }
+}
+
+#process {
+  overflow: visible;
+}
