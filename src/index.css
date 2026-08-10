@@ -175,7 +175,7 @@ section[id], div[id] { scroll-margin-top: 6rem; }
 .process-heading {
   position: -webkit-sticky;
   position: sticky;
-  top: 4.5rem;
+  top: 3.75rem;
 }
 
 @media (min-width: 768px) {
@@ -186,4 +186,139 @@ section[id], div[id] { scroll-margin-top: 6rem; }
 
 #process {
   overflow: visible;
+}
+
+/* === Мобильная оптимизация и правила переносов === */
+
+/* Ничего не выезжает за правый край на любом устройстве */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+svg,
+video,
+canvas,
+iframe {
+  max-width: 100%;
+}
+
+/* Поля ввода в iOS имеют собственную ширину — гасим её */
+input,
+select,
+textarea,
+button {
+  max-width: 100%;
+  min-width: 0;
+  font-size: 16px; /* меньше 16px → Safari автоматически зумит страницу */
+}
+
+input[type="date"] {
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 3.25rem;
+}
+
+/* Скрытая штатная иконка календаря — вместо неё своя, в стиле сайта */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  right: 0;
+  width: 3rem;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* --- Переносы по русским правилам --- */
+/* lang="ru" в index.html включает русские словари переносов в Safari и Chrome */
+p,
+li,
+dd,
+figcaption,
+label,
+span {
+  overflow-wrap: break-word;
+  word-break: normal;
+  line-break: auto;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  overflow-wrap: break-word;
+  word-break: normal;
+  /* заголовки бьются на строки ровно, без одиноких слов в конце */
+  text-wrap: balance;
+  hyphens: manual;
+}
+
+@media (max-width: 767px) {
+  /* переносить слова целиком, а при нехватке места — со слоговым переносом */
+  p,
+  li {
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    hyphenate-limit-chars: 6 3 3; /* не рвать короткие слова и не оставлять огрызки */
+    text-wrap: pretty;
+  }
+}
+
+/* --- Секция «Процесс»: контент шагов не наезжает на липкий заголовок --- */
+@media (max-width: 767px) {
+  .sticky-content {
+    /* верхний отступ — под меню-бар плюс две строки заголовка */
+    padding-top: 9.5rem;
+    padding-bottom: 4.5rem;
+  }
+
+  .step-panel {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 767px) and (max-height: 700px) {
+  .sticky-content {
+    padding-top: 8rem;
+    padding-bottom: 3.5rem;
+  }
+}
+
+/* Планшеты в портретной ориентации */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .sticky-content {
+    padding-top: 10rem;
+    padding-bottom: 5rem;
+  }
+}
+
+/* Крупные заголовки на узких экранах */
+@media (max-width: 640px) {
+  .text-headline-lg {
+    font-size: 30px;
+    line-height: 38px;
+  }
+  .text-headline-md {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .text-display-lg {
+    font-size: 38px;
+    line-height: 46px;
+  }
+}
+
+/* Горизонтальная лента шагов не должна создавать боковую прокрутку */
+.sticky-container {
+  overflow-x: clip;
+}
+
+/* Касания вместо курсора: убираем зависание hover-эффектов на тачскринах */
+@media (hover: none) {
+  .btn-hover-effect:hover,
+  .group:hover .group-hover\:scale-110 {
+    transform: none;
+  }
 }

@@ -61,7 +61,7 @@ export default function App() {
   };
 
   const fieldClass = (invalid: boolean) =>
-    `w-full bg-surface-container/50 border rounded-full px-6 py-4 text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:ring-1 transition-all ${
+    `w-full min-w-0 max-w-full appearance-none bg-surface-container/50 border rounded-full px-5 sm:px-6 py-3.5 sm:py-4 text-base text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:ring-1 transition-all ${
       invalid
         ? 'border-red-500 ring-1 ring-red-500 focus:border-red-500 focus:ring-red-500'
         : 'border-outline/30 focus:border-primary focus:ring-primary'
@@ -129,7 +129,7 @@ export default function App() {
   }, []);
 
   return (
-    <div id="top" className="text-on-surface antialiased  selection:bg-primary-container selection:text-on-primary-container">
+    <div id="top" className="text-on-surface antialiased overflow-x-hidden  selection:bg-primary-container selection:text-on-primary-container">
       {/* Top Navigation Bar */}
       <header className="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-md border-b border-white/5 transition-all duration-300 ease-in-out">
         <div className="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 w-full max-w-container-max mx-auto">
@@ -173,25 +173,26 @@ export default function App() {
         <section className="relative min-h-screen flex items-center pt-32 pb-20 px-margin-mobile md:px-margin-desktop overflow-hidden">
           <div className="absolute inset-0 z-0">
             <picture>
+              <source media="(max-width: 767px)" type="image/webp" srcSet="./images/hero-mobile-720.webp 720w, ./images/hero-mobile-1080.webp 1080w" sizes="100vw" />
               <source type="image/webp" srcSet="./images/hero-1280.webp 1280w, ./images/hero-1920.webp 1920w, ./images/hero-2560.webp 2560w" sizes="100vw" />
               <img src="./images/hero-fallback.jpg" alt="Праздничный вечер с гостями" fetchPriority="high" decoding="async" className="w-full h-full object-cover object-center opacity-90" />
             </picture>
-            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/20"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/35 md:bg-gradient-to-r md:from-background md:via-background/90 md:to-background/20"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
           </div>
           
           <div className="relative z-10 w-full flex flex-col justify-center text-left items-start mt-12">
             <div className="w-full max-w-4xl relative">
               
-              <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-display-lg text-on-surface mb-8 leading-[1.1] tracking-tight animate-fade-up" style={{ animationDelay: '0.1s' }}>
-                Создаём события, <br/><span className="text-gold-gradient italic pr-4">вне времени</span> и ожиданий
+              <h1 className="text-[2.1rem] sm:text-5xl md:text-7xl lg:text-[5.5rem] font-display-lg text-on-surface mb-6 sm:mb-8 leading-[1.12] tracking-tight text-balance animate-fade-up" style={{ animationDelay: '0.1s' }}>
+                Создаём события, <br/><span className="text-gold-gradient italic pr-2 sm:pr-4">вне времени</span> и ожиданий
               </h1>
               
-              <p className="text-lg md:text-xl font-body-lg text-on-surface-variant mb-12 max-w-2xl leading-relaxed animate-fade-up" style={{ animationDelay: '0.2s' }}>
+              <p className="text-base sm:text-lg md:text-xl font-body-lg text-on-surface-variant mb-10 sm:mb-12 max-w-2xl leading-relaxed text-pretty animate-fade-up" style={{ animationDelay: '0.2s' }}>
                 Мы трансформируем ваши амбиции в безупречную реальность, создавая иммерсивные пространства и незабываемые впечатления для самой взыскательной аудитории.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-6 mb-20 animate-fade-up" style={{ animationDelay: '0.3s' }}>
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-14 sm:mb-20 animate-fade-up" style={{ animationDelay: '0.3s' }}>
                 <a href="#contacts" className="bg-primary text-on-primary px-8 py-4 rounded-full font-label-caps text-sm uppercase tracking-wider hover:bg-primary-fixed transition-all hover:scale-105 btn-hover-effect flex items-center justify-center gap-3 shadow-[0_0_30px_rgba(237,192,110,0.3)]">
                   Обсудить проект
                   <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
@@ -202,18 +203,18 @@ export default function App() {
                 </button>
               </div>
               
-              <div className="flex flex-wrap gap-x-16 gap-y-8 animate-fade-up" style={{ animationDelay: '0.4s' }}>
+              <div className="grid grid-cols-3 gap-x-4 gap-y-8 sm:flex sm:flex-wrap sm:gap-x-16 animate-fade-up" style={{ animationDelay: '0.4s' }}>
                 <div className="flex flex-col gap-2">
-                  <div className="font-body-lg font-medium text-4xl text-primary drop-shadow-[0_0_10px_rgba(237,192,110,0.5)] tracking-tight">500+</div>
-                  <div className="font-label-caps text-xs tracking-widest text-on-surface-variant opacity-80 uppercase">Реализованных проектов</div>
+                  <div className="font-body-lg font-medium text-2xl sm:text-4xl text-primary drop-shadow-[0_0_10px_rgba(237,192,110,0.5)] tracking-tight">500+</div>
+                  <div className="font-label-caps text-[10px] sm:text-xs tracking-widest text-on-surface-variant opacity-80 uppercase">Реализованных проектов</div>
                 </div>
                 <div className="flex flex-col gap-2">
-                  <div className="font-body-lg font-medium text-4xl text-primary drop-shadow-[0_0_10px_rgba(237,192,110,0.5)] tracking-tight">12 лет</div>
-                  <div className="font-label-caps text-xs tracking-widest text-on-surface-variant opacity-80 uppercase">Безупречной репутации</div>
+                  <div className="font-body-lg font-medium text-2xl sm:text-4xl text-primary drop-shadow-[0_0_10px_rgba(237,192,110,0.5)] tracking-tight">12 лет</div>
+                  <div className="font-label-caps text-[10px] sm:text-xs tracking-widest text-on-surface-variant opacity-80 uppercase">Безупречной репутации</div>
                 </div>
                 <div className="flex flex-col gap-2">
-                  <div className="font-body-lg font-medium text-4xl text-primary drop-shadow-[0_0_10px_rgba(237,192,110,0.5)] tracking-tight">98%</div>
-                  <div className="font-label-caps text-xs tracking-widest text-on-surface-variant opacity-80 uppercase">Постоянных клиентов</div>
+                  <div className="font-body-lg font-medium text-2xl sm:text-4xl text-primary drop-shadow-[0_0_10px_rgba(237,192,110,0.5)] tracking-tight">98%</div>
+                  <div className="font-label-caps text-[10px] sm:text-xs tracking-widest text-on-surface-variant opacity-80 uppercase">Постоянных клиентов</div>
                 </div>
               </div>
             </div>
@@ -287,22 +288,22 @@ export default function App() {
             </div>
 
 
-            <div className="mt-14 lg:mt-16 relative overflow-hidden rounded-[28px] border border-primary/20 bg-gradient-to-r from-primary/[0.07] via-surface/60 to-transparent px-8 py-9 lg:px-12 lg:py-11">
+            <div className="mt-10 sm:mt-14 lg:mt-16 relative overflow-hidden rounded-3xl border border-primary/20 bg-gradient-to-br from-primary/[0.07] via-surface/60 to-transparent px-5 py-6 sm:px-8 sm:py-9 lg:px-12 lg:py-11">
               <div className="pointer-events-none absolute -left-20 top-1/2 -translate-y-1/2 h-72 w-72 rounded-full bg-primary/10 blur-[90px]"></div>
-              <div className="relative flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+              <div className="relative flex flex-col lg:flex-row lg:items-center justify-between gap-5 sm:gap-8">
                 <div className="max-w-xl">
-                  <h3 className="font-headline-md text-2xl lg:text-3xl text-on-surface mb-3">Не нашли свой формат?</h3>
-                  <p className="font-body-lg text-lg lg:text-xl text-on-surface/90 leading-relaxed">
-                    Опишите задачу — предложим решение и смету за <span className="text-primary font-medium">2 дня</span>.
+                  <h3 className="font-headline-md text-xl sm:text-2xl lg:text-3xl text-on-surface mb-2 sm:mb-3 text-balance">Не нашли свой формат?</h3>
+                  <p className="font-body-lg text-sm sm:text-lg lg:text-xl text-on-surface/90 leading-relaxed text-pretty">
+                    Опишите задачу — предложим решение и смету за <span className="text-primary font-medium whitespace-nowrap">2 дня</span>.
                   </p>
                 </div>
                 <a
                   href="#contacts"
-                  className="btn-hover-effect group inline-flex shrink-0 items-center justify-center gap-4 rounded-full bg-primary px-10 py-5 lg:px-12 lg:py-6 font-label-caps text-base lg:text-lg font-semibold uppercase tracking-[0.12em] text-on-primary shadow-[0_16px_40px_-14px_rgba(237,192,110,0.6)] hover:bg-primary-fixed hover:shadow-[0_22px_60px_-14px_rgba(237,192,110,0.8)] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-background transition-all duration-300 motion-reduce:transition-none"
+                  className="btn-hover-effect group inline-flex w-full lg:w-auto shrink-0 items-center justify-center gap-3 sm:gap-4 rounded-full bg-primary px-6 py-4 sm:px-10 sm:py-5 lg:px-12 lg:py-6 font-label-caps text-sm sm:text-base lg:text-lg font-semibold uppercase whitespace-nowrap tracking-[0.08em] sm:tracking-[0.12em] text-on-primary shadow-[0_16px_40px_-14px_rgba(237,192,110,0.6)] hover:bg-primary-fixed hover:shadow-[0_22px_60px_-14px_rgba(237,192,110,0.8)] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-background transition-all duration-300 motion-reduce:transition-none"
                 >
                   Подобрать формат
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-on-primary/15 group-hover:bg-on-primary/25 group-hover:translate-x-1 transition-all duration-300">
-                    <span className="material-symbols-outlined text-[22px]">arrow_forward</span>
+                  <span className="flex h-7 w-7 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-on-primary/15 group-hover:bg-on-primary/25 group-hover:translate-x-1 transition-all duration-300">
+                    <span className="material-symbols-outlined text-[18px] sm:text-[22px]">arrow_forward</span>
                   </span>
                 </a>
               </div>
@@ -349,9 +350,9 @@ export default function App() {
             <div className="w-full h-full bg-cover bg-center opacity-40" style={{ backgroundImage: "url('./images/case-banquet.webp')" }}></div>
             <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background"></div>
           </div>
-          <div className="process-heading relative z-30 pt-16 pb-8 px-margin-mobile md:px-margin-desktop text-center pointer-events-none">
+          <div className="process-heading relative z-30 pt-5 pb-4 md:pt-14 md:pb-8 px-margin-mobile md:px-margin-desktop text-center pointer-events-none">
             <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-transparent"></div>
-            <h2 className="relative font-headline-lg text-headline-lg text-on-surface drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)]">Как мы создаем легенды?</h2>
+            <h2 className="relative font-headline-lg text-[1.6rem] leading-tight sm:text-3xl md:text-headline-lg text-on-surface text-balance drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)]">Как мы создаем легенды?</h2>
           </div>
           <div className="sticky-container" id="process-sticky-container" ref={stickyContainerRef}>
             <div className="sticky-content">
@@ -367,7 +368,7 @@ export default function App() {
                 ].map((step, idx) => (
                   <div key={idx} className={`step-panel px-margin-mobile md:px-margin-desktop transition-all duration-1000 ease-out`}>
                     <div className="max-w-2xl mx-auto flex flex-col items-center text-center">
-                      <div className="w-48 h-48 md:w-64 md:h-64 mb-10 relative flex items-center justify-center rounded-full p-2 group shadow-[0_0_40px_rgba(237,192,110,0.1)]">
+                      <div className="w-32 h-32 sm:w-44 sm:h-44 md:w-64 md:h-64 mb-5 md:mb-10 relative flex items-center justify-center rounded-full p-2 group shadow-[0_0_40px_rgba(237,192,110,0.1)]">
                         <div className="absolute inset-0 border border-primary/40 border-dashed rounded-full animate-[spin_20s_linear_infinite] group-hover:border-primary transition-colors duration-700"></div>
                         <div className="absolute inset-[-10px] border border-primary/10 rounded-full animate-[spin_30s_linear_infinite_reverse]"></div>
                         
@@ -376,25 +377,25 @@ export default function App() {
                             <img src={step.img} alt={step.title} className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-1000 ease-out" />
                         </div>
                       </div>
-                      <div className="font-display-lg text-primary mb-4 text-5xl md:text-6xl drop-shadow-[0_0_15px_rgba(237,192,110,0.3)]">{step.num}</div>
-                      <h3 className="font-headline-md text-3xl md:text-4xl text-on-surface mb-6">{step.title}</h3>
-                      <p className="font-body-lg text-on-surface-variant max-w-lg mx-auto leading-relaxed">{step.desc}</p>
+                      <div className="font-display-lg text-primary mb-2 md:mb-4 text-3xl sm:text-4xl md:text-6xl drop-shadow-[0_0_15px_rgba(237,192,110,0.3)]">{step.num}</div>
+                      <h3 className="font-headline-md text-xl sm:text-2xl md:text-4xl text-on-surface mb-2 md:mb-6">{step.title}</h3>
+                      <p className="font-body-lg text-sm sm:text-base text-on-surface-variant max-w-lg mx-auto leading-relaxed text-pretty">{step.desc}</p>
                     </div>
                   </div>
                 ))}
                 
                 {/* Step 5 */}
                 <div className={`step-panel px-margin-mobile md:px-margin-desktop transition-all duration-1000 ease-out`}>
-                  <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                  <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-12 items-center">
                     <div>
-                      <div className="font-display-lg text-primary mb-4 text-6xl md:text-7xl drop-shadow-[0_0_15px_rgba(237,192,110,0.3)]">05</div>
-                      <h3 className="font-headline-lg text-4xl md:text-5xl text-on-surface mb-6">Событие</h3>
-                      <p className="font-body-lg text-on-surface-variant mb-6 leading-relaxed">Момент, когда магия становится реальностью. Идеальное исполнение, где каждая секунда срежиссирована, а гости погружаются в атмосферу абсолютной роскоши и комфорта.</p>
-                      <p className="font-body-lg text-on-surface-variant leading-relaxed">Мы берем на себя все заботы, чтобы вы могли наслаждаться своим триумфом.</p>
+                      <div className="font-display-lg text-primary mb-2 md:mb-4 text-3xl sm:text-4xl md:text-7xl drop-shadow-[0_0_15px_rgba(237,192,110,0.3)]">05</div>
+                      <h3 className="font-headline-lg text-xl sm:text-2xl md:text-5xl text-on-surface mb-2 md:mb-6">Событие</h3>
+                      <p className="font-body-lg text-sm sm:text-base text-on-surface-variant mb-3 md:mb-6 leading-relaxed text-pretty">Момент, когда магия становится реальностью. Идеальное исполнение, где каждая секунда срежиссирована, а гости погружаются в атмосферу абсолютной роскоши и комфорта.</p>
+                      <p className="hidden sm:block font-body-lg text-sm sm:text-base text-on-surface-variant leading-relaxed text-pretty">Мы берем на себя все заботы, чтобы вы могли наслаждаться своим триумфом.</p>
                     </div>
-                    <div className="rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(237,192,110,0.2)] border border-primary/20 relative group">
+                    <div className="rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(237,192,110,0.2)] border border-primary/20 relative group max-h-[34vh] lg:max-h-none">
                       <div className="absolute inset-0 bg-primary/10 mix-blend-overlay z-10 group-hover:opacity-0 transition-opacity duration-700"></div>
-                      <img alt="Первый танец молодожёнов" className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" src="./images/about.webp" />
+                      <img alt="Первый танец молодожёнов" loading="lazy" className="w-full h-full max-h-[34vh] lg:max-h-none lg:h-auto object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" src="./images/about.webp" />
                     </div>
                   </div>
                 </div>
@@ -412,7 +413,7 @@ export default function App() {
         {/* Combined Why Us & Scales Section with Shared Background */}
         <div className="relative overflow-hidden mt-12">
           <div className="absolute inset-0 z-0">
-            <div className="w-full h-full bg-cover bg-fixed bg-center opacity-25 blur-[6px] scale-105" style={{ backgroundImage: "url('./images/cta-bg.webp')" }}></div>
+            <div className="w-full h-full bg-cover md:bg-fixed bg-center opacity-25 blur-[6px] scale-105" style={{ backgroundImage: "url('./images/cta-bg.webp')" }}></div>
             <div className="absolute inset-0 bg-background/70"></div>
             <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background to-transparent"></div>
             <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent"></div>
@@ -472,15 +473,15 @@ export default function App() {
             </section>
 
             {/* Final CTA Section */}
-            <section className="py-24 px-margin-mobile md:px-margin-desktop relative overflow-hidden" id="contacts">
-              <div className="max-w-container-max mx-auto relative z-10 glass-panel p-8 md:p-16 rounded-3xl border border-primary/20 shadow-2xl">
+            <section className="py-16 sm:py-24 px-margin-mobile md:px-margin-desktop relative overflow-hidden" id="contacts">
+              <div className="max-w-container-max mx-auto relative z-10 glass-panel p-5 sm:p-8 md:p-16 rounded-3xl border border-primary/20 shadow-2xl">
             <div className="text-center mb-12">
               <h2 className="font-headline-lg text-headline-lg text-on-surface mb-4">Готовы создать легенду?</h2>
               <p className="font-body-lg text-on-surface-variant">Оставьте заявку, и наш продюсер свяжется с вами для обсуждения деталей.</p>
             </div>
             <form className="max-w-3xl mx-auto" onSubmit={handleSubmit} noValidate>
-              <div className="flex flex-col md:flex-row gap-4 mb-4">
-                <div className="flex-1">
+              <div className="flex flex-col md:flex-row gap-4 mb-4 md:items-start">
+                <div className="flex-1 min-w-0">
                   <input
                     className={fieldClass(!!errors.name)}
                     placeholder="Имя *"
@@ -492,7 +493,7 @@ export default function App() {
                   />
                   {errors.name && <p className="font-body-md text-xs text-red-400 mt-2 pl-6">{errors.name}</p>}
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <input
                     className={fieldClass(!!errors.phone)}
                     placeholder="Телефон *"
@@ -504,7 +505,7 @@ export default function App() {
                   />
                   {errors.phone && <p className="font-body-md text-xs text-red-400 mt-2 pl-6">{errors.phone}</p>}
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <input
                     className={fieldClass(!!errors.email)}
                     placeholder="Email *"
@@ -517,37 +518,51 @@ export default function App() {
                   {errors.email && <p className="font-body-md text-xs text-red-400 mt-2 pl-6">{errors.email}</p>}
                 </div>
               </div>
-              <div className="flex flex-col md:flex-row gap-4 mb-6">
-                <div className="flex-1">
-                  <input
-                    className={`${fieldClass(!!errors.date)} [color-scheme:dark]`}
-                    type="date"
-                    value={form.date}
-                    onChange={(e) => setField('date', e.target.value)}
-                    aria-invalid={!!errors.date}
-                    data-invalid={errors.date ? 'true' : undefined}
-                  />
+              <div className="flex flex-col md:flex-row gap-4 mb-6 md:items-end">
+                <div className="flex-1 min-w-0">
+                  <label htmlFor="event-date" className="block font-label-caps text-[11px] uppercase tracking-widest text-on-surface-variant mb-2 pl-5 sm:pl-6">
+                    Дата мероприятия <span className="text-primary">*</span>
+                  </label>
+                  <div className="relative">
+                    <input
+                      id="event-date"
+                      className={`${fieldClass(!!errors.date)} pr-12 [color-scheme:dark]`}
+                      type="date"
+                      value={form.date}
+                      onChange={(e) => setField('date', e.target.value)}
+                      aria-invalid={!!errors.date}
+                      data-invalid={errors.date ? 'true' : undefined}
+                    />
+                    <span aria-hidden="true" className="material-symbols-outlined pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-[20px] text-primary/70">calendar_month</span>
+                  </div>
                   {errors.date && <p className="font-body-md text-xs text-red-400 mt-2 pl-6">{errors.date}</p>}
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
+                  <label htmlFor="event-format" className="block font-label-caps text-[11px] uppercase tracking-widest text-on-surface-variant mb-2 pl-5 sm:pl-6">
+                    Формат мероприятия <span className="text-primary">*</span>
+                  </label>
+                  <div className="relative">
                   <select
-                    className={`${fieldClass(!!errors.format)} appearance-none ${form.format ? 'text-on-surface' : 'text-on-surface-variant'}`}
+                    id="event-format"
+                    className={`${fieldClass(!!errors.format)} pr-12 ${form.format ? 'text-on-surface' : 'text-on-surface-variant'}`}
                     value={form.format}
                     onChange={(e) => setField('format', e.target.value)}
                     aria-invalid={!!errors.format}
                     data-invalid={errors.format ? 'true' : undefined}
                   >
-                    <option value="">Формат мероприятия *</option>
+                    <option value="">Выберите формат</option>
                     <option value="corporate">Корпоратив</option>
                     <option value="wedding">Свадьба</option>
                     <option value="anniversary">Юбилей</option>
                     <option value="conference">Конференция</option>
                     <option value="other">Другое</option>
                   </select>
-                  {errors.format && <p className="font-body-md text-xs text-red-400 mt-2 pl-6">{errors.format}</p>}
+                  <span aria-hidden="true" className="material-symbols-outlined pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-[20px] text-primary/70">expand_more</span>
+                  </div>
+                  {errors.format && <p className="font-body-md text-xs text-red-400 mt-2 pl-5 sm:pl-6">{errors.format}</p>}
                 </div>
-                <div className="flex-1">
-                  <button className="w-full bg-primary text-on-primary font-label-caps text-label-caps uppercase tracking-wider rounded-full px-8 py-4 hover:bg-primary-fixed transition-colors btn-hover-effect" type="submit">
+                <div className="flex-1 min-w-0">
+                  <button className="w-full bg-primary text-on-primary font-label-caps text-label-caps uppercase tracking-wider rounded-full px-6 sm:px-8 py-4 hover:bg-primary-fixed transition-colors btn-hover-effect" type="submit">
                     Отправить запрос
                   </button>
                 </div>
@@ -555,7 +570,7 @@ export default function App() {
               <div className="flex flex-col gap-3">
                 <label
                   htmlFor="privacy"
-                  className={`group flex items-start gap-4 cursor-pointer select-none rounded-2xl border px-5 py-4 transition-all duration-200 ${
+                  className={`group flex items-start gap-3 sm:gap-4 cursor-pointer select-none rounded-2xl border px-4 py-3.5 sm:px-5 sm:py-4 transition-all duration-200 ${
                     errors.agree
                       ? 'border-red-500/70 bg-red-500/5'
                       : agree
