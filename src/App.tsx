@@ -341,12 +341,10 @@ export default function App() {
                 </div>
               </div>
             </section>
-          </div>
-        </div>
 
-        {/* Final CTA Section */}
-        <section className="py-24 px-margin-mobile md:px-margin-desktop relative overflow-hidden" id="contacts">
-          <div className="max-w-container-max mx-auto relative z-10 glass-panel p-8 md:p-16 rounded-3xl border border-primary/20 shadow-2xl">
+            {/* Final CTA Section */}
+            <section className="py-24 px-margin-mobile md:px-margin-desktop relative overflow-hidden" id="contacts">
+              <div className="max-w-container-max mx-auto relative z-10 glass-panel p-8 md:p-16 rounded-3xl border border-primary/20 shadow-2xl">
             <div className="text-center mb-12">
               <h2 className="font-headline-lg text-headline-lg text-on-surface mb-4">Готовы создать легенду?</h2>
               <p className="font-body-lg text-on-surface-variant">Оставьте заявку, и наш продюсер свяжется с вами для обсуждения деталей.</p>
@@ -379,6 +377,8 @@ export default function App() {
             </form>
           </div>
         </section>
+        </div>
+        </div>
       </main>
 
       {/* Footer */}
