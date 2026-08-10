@@ -641,9 +641,9 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-surface-container-lowest w-full py-14 px-margin-mobile md:px-margin-desktop border-t border-primary/20">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-x-12 md:gap-y-12 lg:gap-x-16 w-full max-w-container-max mx-auto mb-12">
-          <div className="md:col-span-12 lg:col-span-4 flex flex-col">
+      <footer className="bg-surface-container-lowest w-full py-14 px-margin-mobile md:px-margin-desktop xl:px-20 2xl:px-28 border-t border-primary/20">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-x-12 md:gap-y-12 lg:gap-x-16 xl:gap-x-24 w-full mb-12">
+          <div className="md:col-span-12 lg:col-span-3 flex flex-col">
             <div className="font-display-lg text-headline-md text-primary mb-4">[ВАШ БРЕНД]</div>
             <p className="font-body-md text-on-surface-variant mb-6 max-w-sm leading-relaxed font-light tracking-wide">
               Эксклюзивное агентство по организации мероприятий премиум-класса. Создаем события, которые становятся легендами.
@@ -678,22 +678,22 @@ export default function App() {
               <a className="font-body-md text-sm text-on-surface-variant hover:text-primary transition-colors tracking-wide font-medium" href="#about">О нас</a>
               <a className="font-body-md text-sm text-on-surface-variant hover:text-primary transition-colors tracking-wide font-medium" href="#contacts">Контакты</a>
           </div>
-          <div className="md:col-span-4 lg:col-span-3 flex flex-col gap-4">
+          <div className="md:col-span-4 lg:col-span-2 flex flex-col gap-4">
             <span className="font-label-caps text-label-caps text-on-surface mb-2 text-primary">Контакты</span>
             <a className="font-body-md text-sm text-primary hover:text-primary-fixed transition-colors tracking-wide font-medium" href="mailto:hello@auraevents.ru">hello@auraevents.ru</a>
             <a className="font-body-md text-sm text-on-surface-variant hover:text-primary transition-colors tracking-wide font-medium" href="tel:+74950000000">+7 495 000 00 00</a>
             <span className="font-body-md text-sm text-on-surface-variant font-light tracking-wide">Москва, Пресненская наб., 12</span>
           </div>
-          <div className="md:col-span-4 lg:col-span-3 rounded-xl overflow-hidden h-64 md:h-full min-h-[16rem] relative border border-primary/20">
+          <div className="md:col-span-4 lg:col-span-5 rounded-2xl overflow-hidden h-72 md:h-full min-h-[18rem] lg:min-h-[22rem] relative border border-primary/20 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.8)]">
             <div className="absolute inset-0 bg-surface-container-high flex items-center justify-center">
-              <span className="material-symbols-outlined text-primary/40 text-4xl">map</span>
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex items-end p-4">
-                <span className="font-label-caps text-primary text-[10px]">Показать на карте</span>
+              <span className="material-symbols-outlined text-primary/40 text-6xl">map</span>
+              <div className="absolute inset-0 bg-gradient-to-t from-background/85 via-background/20 to-transparent flex items-end p-6">
+                <span className="font-label-caps text-primary text-xs tracking-widest">Показать на карте</span>
               </div>
             </div>
           </div>
         </div>
-        <div className="w-full max-w-container-max mx-auto border-t border-white/5 pt-6 flex flex-col md:flex-row md:justify-between md:items-center gap-6">
+        <div className="w-full border-t border-white/5 pt-6 flex flex-col md:flex-row md:justify-between md:items-center gap-6">
           <div className="font-body-md text-sm text-on-surface-variant">
             © 2026 [ВАШ БРЕНД]. ВСЕ ПРАВА ЗАЩИЩЕНЫ.
           </div>
