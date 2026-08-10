@@ -105,7 +105,7 @@ export default function App() {
         {/* Hero Section */}
         <section className="relative min-h-screen flex items-center pt-32 pb-20 px-margin-mobile md:px-margin-desktop overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <div className="w-full h-full bg-cover bg-center opacity-40 scale-105 animate-[pulse_10s_ease-in-out_infinite_alternate]" style={{ backgroundImage: "url('/images/image_1.jpg')" }}></div>
+            <div className="w-full h-full bg-cover bg-center opacity-40 scale-105 animate-[pulse_10s_ease-in-out_infinite_alternate]" style={{ backgroundImage: "url('./images/image_1.jpg')" }}></div>
             <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/20"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
           </div>
@@ -152,7 +152,7 @@ export default function App() {
         {/* Services Section */}
         <section className="py-section-gap px-margin-mobile md:px-margin-desktop relative overflow-hidden" id="services">
           <div className="absolute inset-0 z-0">
-            <div className="w-full h-full bg-cover bg-center opacity-30" style={{ backgroundImage: "url('/images/image_2.jpg')" }}></div>
+            <div className="w-full h-full bg-cover bg-center opacity-30" style={{ backgroundImage: "url('./images/image_2.jpg')" }}></div>
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/50"></div>
           </div>
           <div className="max-w-container-max mx-auto relative z-10">
@@ -197,12 +197,12 @@ export default function App() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { img: "/images/image_3.jpg", tag: "Конференции", title: "Global Tech Summit" },
-                { img: "/images/image_4.jpg", tag: "Корпоративы", title: "Anniversary Gala" },
-                { img: "/images/image_5.jpg", tag: "Саммиты", title: "International Business Forum" },
-                { img: "/images/image_6.jpg", tag: "Свадьбы", title: "Villa Royale Nuptials" },
-                { img: "/images/image_7.jpg", tag: "Активации брендов", title: "Noir Perfume Launch" },
-                { img: "/images/image_8.jpg", tag: "Эксклюзивные церемонии", title: "Tuscan Sunset Wedding" }
+                { img: "./images/image_3.jpg", tag: "Конференции", title: "Global Tech Summit" },
+                { img: "./images/image_4.jpg", tag: "Корпоративы", title: "Anniversary Gala" },
+                { img: "./images/image_5.jpg", tag: "Саммиты", title: "International Business Forum" },
+                { img: "./images/image_6.jpg", tag: "Свадьбы", title: "Villa Royale Nuptials" },
+                { img: "./images/image_7.jpg", tag: "Активации брендов", title: "Noir Perfume Launch" },
+                { img: "./images/image_8.jpg", tag: "Эксклюзивные церемонии", title: "Tuscan Sunset Wedding" }
               ].map((item, idx) => (
                 <div key={idx} className="relative group overflow-hidden rounded-2xl aspect-[4/3]">
                   <img alt={item.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" src={item.img} />
@@ -219,7 +219,7 @@ export default function App() {
         {/* Process Section (Sticky Scroll) */}
         <section className="relative bg-surface" id="process">
           <div className="absolute inset-0 z-0">
-            <div className="w-full h-full bg-cover bg-center opacity-40" style={{ backgroundImage: "url('/images/image_9.jpg')" }}></div>
+            <div className="w-full h-full bg-cover bg-center opacity-40" style={{ backgroundImage: "url('./images/image_9.jpg')" }}></div>
             <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background"></div>
           </div>
           <div className="relative z-10 py-16 px-margin-mobile md:px-margin-desktop text-center">
@@ -232,10 +232,10 @@ export default function App() {
               
               <div className="steps-wrapper relative z-10" id="process-steps-wrapper" ref={stepsWrapperRef}>
                 {[
-                  { num: '01', title: 'Бриф', desc: 'Глубокое погружение в цели и философию. Мы анализируем каждую деталь, чтобы понять истинную суть вашего бренда или личного запроса.', img: '/images/image_10.jpg' },
-                  { num: '02', title: 'Концепция', desc: 'Разработка креативной идеи и визуального стиля. Мы создаем мудборды, скетчи и 3D-визуализации будущего пространства.', img: '/images/image_11.jpg' },
-                  { num: '03', title: 'Планирование', desc: 'Детальная смета, логистика и тайминг. Ювелирная точность в расчетах и подборе подрядчиков высочайшего уровня.', img: '/images/image_12.jpg' },
-                  { num: '04', title: 'Реализация', desc: 'Безупречный монтаж и контроль на площадке. Наша команда управляет сотнями процессов одновременно для идеального результата.', img: '/images/image_13.jpg' },
+                  { num: '01', title: 'Бриф', desc: 'Глубокое погружение в цели и философию. Мы анализируем каждую деталь, чтобы понять истинную суть вашего бренда или личного запроса.', img: './images/image_10.jpg' },
+                  { num: '02', title: 'Концепция', desc: 'Разработка креативной идеи и визуального стиля. Мы создаем мудборды, скетчи и 3D-визуализации будущего пространства.', img: './images/image_11.jpg' },
+                  { num: '03', title: 'Планирование', desc: 'Детальная смета, логистика и тайминг. Ювелирная точность в расчетах и подборе подрядчиков высочайшего уровня.', img: './images/image_12.jpg' },
+                  { num: '04', title: 'Реализация', desc: 'Безупречный монтаж и контроль на площадке. Наша команда управляет сотнями процессов одновременно для идеального результата.', img: './images/image_13.jpg' },
                 ].map((step, idx) => (
                   <div key={idx} className={`step-panel px-margin-mobile md:px-margin-desktop transition-all duration-1000 ease-out`}>
                     <div className="max-w-2xl mx-auto flex flex-col items-center text-center">
@@ -266,7 +266,7 @@ export default function App() {
                     </div>
                     <div className="rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(237,192,110,0.2)] border border-primary/20 relative group">
                       <div className="absolute inset-0 bg-primary/10 mix-blend-overlay z-10 group-hover:opacity-0 transition-opacity duration-700"></div>
-                      <img alt="The Grand Event" className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" src="/images/image_14.jpg" />
+                      <img alt="The Grand Event" className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" src="./images/image_14.jpg" />
                     </div>
                   </div>
                 </div>
@@ -285,7 +285,7 @@ export default function App() {
         <section className="py-section-gap px-margin-mobile md:px-margin-desktop" id="about">
           <div className="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="order-2 lg:order-1 rounded-2xl overflow-hidden relative shadow-2xl">
-              <img alt="Event setup" className="w-full h-[600px] object-cover grayscale-[20%] sepia-[10%] hover:scale-105 transition-transform duration-1000" src="/images/image_15.jpg" />
+              <img alt="Event setup" className="w-full h-[600px] object-cover grayscale-[20%] sepia-[10%] hover:scale-105 transition-transform duration-1000" src="./images/image_15.jpg" />
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"></div>
             </div>
             <div className="order-1 lg:order-2 fade-in-up" id="about-content">
@@ -342,7 +342,7 @@ export default function App() {
         {/* Final CTA Section */}
         <section className="py-24 px-margin-mobile md:px-margin-desktop relative overflow-hidden" id="contacts">
           <div className="absolute inset-0 z-0">
-            <div className="w-full h-full bg-cover bg-center opacity-30 blur-sm" style={{ backgroundImage: "url('/images/image_16.jpg')" }}></div>
+            <div className="w-full h-full bg-cover bg-center opacity-30 blur-sm" style={{ backgroundImage: "url('./images/image_16.jpg')" }}></div>
             <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/80 to-background/90"></div>
           </div>
           <div className="max-w-container-max mx-auto relative z-10 glass-panel p-8 md:p-16 rounded-3xl border border-primary/20 shadow-2xl">
