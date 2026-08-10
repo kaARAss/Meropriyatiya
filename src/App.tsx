@@ -57,12 +57,13 @@ export default function App() {
         const scrollProgress = Math.abs(containerTop) / containerHeight;
         stepsWrapperRef.current.style.transform = `translateX(-${scrollProgress * 80}%)`;
 
-        const activeIndex = Math.min(Math.round(scrollProgress * (numSteps - 1)), numSteps - 1);
+        const activeIndex = Math.min(Math.floor(scrollProgress * numSteps), numSteps - 1);
         setActiveStep(activeIndex);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -105,7 +106,7 @@ export default function App() {
         {/* Hero Section */}
         <section className="relative min-h-screen flex items-center pt-32 pb-20 px-margin-mobile md:px-margin-desktop overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <div className="w-full h-full bg-cover bg-center opacity-70 scale-105 blur-[2px]" style={{ backgroundImage: "url('./images/hero.jpg')" }}></div>
+            <div className="w-full h-full bg-cover bg-center opacity-90" style={{ backgroundImage: "url('./images/hero.jpg')" }}></div>
             <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/20"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
           </div>
@@ -118,7 +119,7 @@ export default function App() {
               </h1>
               
               <p className="text-lg md:text-xl font-body-lg text-on-surface-variant mb-12 max-w-2xl leading-relaxed animate-fade-up" style={{ animationDelay: '0.2s' }}>
-                Мы трансформируем ваши амбиции в безупречную реальность, создавая иммерсивные пространства и незабываемые впечатления для самой взыскательной аудитории.
+                Мы трансформируем ��аши амбиции в безупречную реальность, создавая иммерсивные пространства и незабываемые впечатления для самой взыскательной аудитории.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-6 mb-20 animate-fade-up" style={{ animationDelay: '0.3s' }}>
@@ -226,7 +227,7 @@ export default function App() {
             <h2 className="font-headline-lg text-headline-lg text-on-surface">Как мы создаем легенды</h2>
           </div>
           <div className="sticky-container" id="process-sticky-container" ref={stickyContainerRef}>
-            <div className="sticky-content relative">
+            <div className="sticky-content">
               <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
               <div className="absolute bottom-1/4 right-1/4 w-[30rem] h-[30rem] bg-secondary/5 rounded-full blur-[120px] pointer-events-none"></div>
               
