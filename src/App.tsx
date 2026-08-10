@@ -105,7 +105,7 @@ export default function App() {
         {/* Hero Section */}
         <section className="relative min-h-screen flex items-center pt-32 pb-20 px-margin-mobile md:px-margin-desktop overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <div className="w-full h-full bg-cover bg-center opacity-40 scale-105 animate-[pulse_10s_ease-in-out_infinite_alternate]" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2400&auto=format&fit=crop')" }}></div>
+            <div className="w-full h-full bg-cover bg-center opacity-40 scale-105 animate-[pulse_10s_ease-in-out_infinite_alternate]" style={{ backgroundImage: "url('/hero.jpg')" }}></div>
             <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/20"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
           </div>
@@ -281,70 +281,71 @@ export default function App() {
           </div>
         </section>
 
-        {/* Why Us Section */}
-        <section className="py-section-gap px-margin-mobile md:px-margin-desktop" id="about">
-          <div className="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="order-2 lg:order-1 rounded-2xl overflow-hidden relative shadow-2xl">
-              <img alt="Event setup" className="w-full h-[600px] object-cover grayscale-[20%] sepia-[10%] hover:scale-105 transition-transform duration-1000" src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1600&auto=format&fit=crop" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"></div>
-            </div>
-            <div className="order-1 lg:order-2 fade-in-up" id="about-content">
-              <h2 className="font-headline-lg text-headline-lg text-on-surface mb-8 leading-tight">Создаем наследие, <br/><span className="text-gold-gradient italic">не подвластное времени</span></h2>
-              <p className="font-body-lg text-on-surface-variant mb-12 leading-relaxed">Наш подход основан на бескомпромиссном внимании к деталям и глубоком понимании эстетики люкса. Мы не просто организуем мероприятия — мы режиссируем эмоции.</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12">
-                {[
-                  { num: '01', title: 'Индивидуальность', text: 'Уникальная архитектура каждого события без использования шаблонных паттернов.' },
-                  { num: '02', title: 'Безупречность', text: 'Швейцарский стандарт в планировании логистики и синхронизации таймингов.' },
-                  { num: '03', title: 'Инновации', text: 'Синтез передовых мультимедийных технологий и высокого искусства.' },
-                  { num: '04', title: 'Приватность', text: 'Абсолютная конфиденциальность и протоколы безопасности закрытых торжеств.' }
-                ].map((item, idx) => (
-                  <div key={idx} className="relative pl-6 border-l border-primary/30">
-                    <div className="absolute left-[-5px] top-1 w-2 h-2 rounded-full bg-primary"></div>
-                    <div className="font-display-lg text-primary mb-3 text-5xl">{item.num}</div>
-                    <h4 className="font-headline-md text-xl text-on-surface mb-2">{item.title}</h4>
-                    <p className="font-body-md text-on-surface-variant text-sm">{item.text}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+        {/* Combined Why Us & Scales Section with Shared Background */}
+        <div className="relative overflow-hidden mt-12">
+          <div className="absolute inset-0 z-0">
+            <div className="w-full h-full bg-cover bg-fixed bg-center opacity-30" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=2400&auto=format&fit=crop')" }}></div>
+            <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background to-transparent"></div>
+            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent"></div>
           </div>
-        </section>
+          
+          <div className="relative z-10">
+            {/* Why Us Section */}
+            <section className="py-section-gap px-margin-mobile md:px-margin-desktop" id="about">
+              <div className="max-w-5xl mx-auto text-center fade-in-up" id="about-content">
+                <h2 className="font-headline-lg text-headline-lg text-on-surface mb-8 leading-tight">Создаем наследие, <br/><span className="text-gold-gradient italic">не подвластное времени</span></h2>
+                <p className="font-body-lg text-on-surface-variant mb-16 leading-relaxed max-w-3xl mx-auto">Наш подход основан на бескомпромиссном внимании к деталям и глубоком понимании эстетики люкса. Мы не просто организуем мероприятия — мы режиссируем эмоции.</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-12 text-left">
+                  {[
+                    { num: '01', title: 'Индивидуальность', text: 'Уникальная архитектура каждого события без использования шаблонных паттернов.' },
+                    { num: '02', title: 'Безупречность', text: 'Швейцарский стандарт в планировании логистики и синхронизации таймингов.' },
+                    { num: '03', title: 'Инновации', text: 'Синтез передовых мультимедийных технологий и высокого искусства.' },
+                    { num: '04', title: 'Приватность', text: 'Абсолютная конфиденциальность и протоколы безопасности закрытых торжеств.' }
+                  ].map((item, idx) => (
+                    <div key={idx} className="relative pl-8 border-l border-primary/30 hover:border-primary transition-colors duration-500 group">
+                      <div className="absolute left-[-5px] top-1 w-2 h-2 rounded-full bg-primary/50 group-hover:bg-primary transition-colors duration-500"></div>
+                      <div className="font-display-lg text-primary/70 group-hover:text-primary transition-colors duration-500 mb-3 text-5xl">{item.num}</div>
+                      <h4 className="font-headline-md text-xl text-on-surface mb-2">{item.title}</h4>
+                      <p className="font-body-md text-on-surface-variant text-sm">{item.text}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
 
-        {/* Scales Section */}
-        <section className="py-section-gap px-margin-mobile md:px-margin-desktop relative overflow-hidden">
-          <div className="max-w-container-max mx-auto relative z-10">
-            <div className="text-center mb-16">
-              <h2 className="font-headline-lg text-headline-lg text-on-surface">Решения для любых задач</h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="glass-panel p-10 rounded-2xl border-t-4 border-t-primary/30 hover:border-t-primary hover:border-primary/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_15px_40px_-10px_rgba(237,192,110,0.2)] cursor-pointer relative overflow-hidden group">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="font-display-lg text-4xl text-primary mb-4 counter relative z-10 group-hover:scale-110 transition-transform duration-500 origin-left" data-target="100">0</div>
-                <h3 className="font-body-lg text-on-surface mb-4 font-semibold text-xl relative z-10 group-hover:text-primary transition-colors">Камерные события</h3>
-                <p className="font-body-md text-on-surface-variant relative z-10">Закрытые ужины, советы директоров, эксклюзивные презентации для VIP-клиентов.</p>
+            {/* Scales Section */}
+            <section className="py-section-gap px-margin-mobile md:px-margin-desktop relative overflow-hidden">
+              <div className="max-w-container-max mx-auto relative z-10">
+                <div className="text-center mb-16">
+                  <h2 className="font-headline-lg text-headline-lg text-on-surface">Решения для любых задач</h2>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="glass-panel p-10 rounded-2xl border-t-4 border-t-primary/30 hover:border-t-primary hover:border-primary/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_15px_40px_-10px_rgba(237,192,110,0.2)] cursor-pointer relative overflow-hidden group">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="font-display-lg text-4xl text-primary mb-4 counter relative z-10 group-hover:scale-110 transition-transform duration-500 origin-left" data-target="100">0</div>
+                    <h3 className="font-body-lg text-on-surface mb-4 font-semibold text-xl relative z-10 group-hover:text-primary transition-colors">Камерные события</h3>
+                    <p className="font-body-md text-on-surface-variant relative z-10">Закрытые ужины, советы директоров, эксклюзивные презентации для VIP-клиентов.</p>
+                  </div>
+                  <div className="glass-panel p-10 rounded-2xl border-t-4 border-t-primary/60 hover:border-t-primary hover:border-primary/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_15px_40px_-10px_rgba(237,192,110,0.2)] cursor-pointer relative overflow-hidden group">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="font-display-lg text-4xl text-primary mb-4 counter relative z-10 group-hover:scale-110 transition-transform duration-500 origin-left" data-target="1000">0</div>
+                    <h3 className="font-body-lg text-on-surface mb-4 font-semibold text-xl relative z-10 group-hover:text-primary transition-colors">Масштабные проекты</h3>
+                    <p className="font-body-md text-on-surface-variant relative z-10">Корпоративные форумы, гала-ужины, церемонии награждения, светские приемы.</p>
+                  </div>
+                  <div className="glass-panel p-10 rounded-2xl border-t-4 border-t-primary hover:border-t-primary hover:border-primary/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_15px_40px_-10px_rgba(237,192,110,0.2)] cursor-pointer relative overflow-hidden group bg-gradient-to-b from-primary/10 to-transparent">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="font-display-lg text-4xl text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-500 origin-left">1000+</div>
+                    <h3 className="font-body-lg text-on-surface mb-4 font-semibold text-xl relative z-10 group-hover:text-primary transition-colors">Грандиозные шоу</h3>
+                    <p className="font-body-md text-on-surface-variant relative z-10">Городские фестивали, стадионные концерты, масштабные выставки и конгрессы.</p>
+                  </div>
+                </div>
               </div>
-              <div className="glass-panel p-10 rounded-2xl border-t-4 border-t-primary/60 hover:border-t-primary hover:border-primary/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_15px_40px_-10px_rgba(237,192,110,0.2)] cursor-pointer relative overflow-hidden group">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="font-display-lg text-4xl text-primary mb-4 counter relative z-10 group-hover:scale-110 transition-transform duration-500 origin-left" data-target="1000">0</div>
-                <h3 className="font-body-lg text-on-surface mb-4 font-semibold text-xl relative z-10 group-hover:text-primary transition-colors">Масштабные проекты</h3>
-                <p className="font-body-md text-on-surface-variant relative z-10">Корпоративные форумы, гала-ужины, церемонии награждения, светские приемы.</p>
-              </div>
-              <div className="glass-panel p-10 rounded-2xl border-t-4 border-t-primary hover:border-t-primary hover:border-primary/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_15px_40px_-10px_rgba(237,192,110,0.2)] cursor-pointer relative overflow-hidden group bg-gradient-to-b from-primary/10 to-transparent">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="font-display-lg text-4xl text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-500 origin-left">1000+</div>
-                <h3 className="font-body-lg text-on-surface mb-4 font-semibold text-xl relative z-10 group-hover:text-primary transition-colors">Грандиозные шоу</h3>
-                <p className="font-body-md text-on-surface-variant relative z-10">Городские фестивали, стадионные концерты, масштабные выставки и конгрессы.</p>
-              </div>
-            </div>
+            </section>
           </div>
-        </section>
+        </div>
 
         {/* Final CTA Section */}
         <section className="py-24 px-margin-mobile md:px-margin-desktop relative overflow-hidden" id="contacts">
-          <div className="absolute inset-0 z-0">
-            <div className="w-full h-full bg-cover bg-center opacity-30 blur-sm" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=2400&auto=format&fit=crop')" }}></div>
-            <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/80 to-background/90"></div>
-          </div>
           <div className="max-w-container-max mx-auto relative z-10 glass-panel p-8 md:p-16 rounded-3xl border border-primary/20 shadow-2xl">
             <div className="text-center mb-12">
               <h2 className="font-headline-lg text-headline-lg text-on-surface mb-4">Готовы создать легенду?</h2>
