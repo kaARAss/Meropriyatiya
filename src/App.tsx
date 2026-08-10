@@ -650,8 +650,8 @@ export default function App() {
             </p>
             <div className="flex gap-4">
               <a href="#" className="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-colors" title="ВКонтакте">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M15.071 2.929C11.72-1.144 5.617-.417 2.929 2.929c-3.344 3.343-2.618 9.445 1.455 12.796 3.343 2.687 9.444 3.414 12.795.071 3.343-3.343 2.616-9.444-1.455-12.796Zm-8.498 12.44c-3.13-.538-4.496-4.577-4.496-4.577s1.393-.242 2.106-.328c0 0 .546 2.502 1.396 3.292.083.084.225.137.382.137.245 0 .394-.15.394-.376V9.894c0-.288-.135-.55-.407-.74-.236-.168-.425-.192-.425-.192s.258-.755 1.173-.918h1.233c.315 0 .504.162.602.395v3.468c0 .285.342.368.514.205 1.134-1.157 1.838-2.887 2.015-3.395.086-.233.315-.365.578-.365h1.834c.548 0 .614.47.533.722-.192.656-.99 2.215-1.925 3.167-.202.218-.178.365.02.585.807.838 1.488 2.083 1.637 2.474.155.378-.06.634-.415.634H11.51c-.42 0-.693-.298-.867-.622-.294-.526-.803-1.228-1.26-1.593-.198-.157-.428-.242-.647-.242-.4 0-.638.258-.638.647v1.077c0 .408-.255.653-.61.718l-.915.01Z"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M6.79 7.3H4.05c.13 6.24 3.25 9.99 8.72 9.99h.31v-3.57c2.01.2 3.53 1.67 4.14 3.57h2.84c-.78-2.84-2.83-4.41-4.11-5.01 1.28-.74 3.08-2.54 3.51-4.98h-2.58c-.56 1.98-2.22 3.78-3.8 3.95V7.3H10.5v6.92c-1.6-.4-3.62-2.34-3.71-6.92Z" />
                 </svg>
               </a>
               <a href="#" className="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-colors" title="Telegram">
