@@ -105,7 +105,7 @@ export default function App() {
         {/* Hero Section */}
         <section className="relative min-h-screen flex items-center pt-32 pb-20 px-margin-mobile md:px-margin-desktop overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <div className="w-full h-full bg-cover bg-center opacity-40 scale-105 animate-[pulse_10s_ease-in-out_infinite_alternate]" style={{ backgroundImage: "url('./images/image_1.jpg')" }}></div>
+            <div className="w-full h-full bg-cover bg-center opacity-40 scale-105 animate-[pulse_10s_ease-in-out_infinite_alternate]" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2400&auto=format&fit=crop')" }}></div>
             <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/20"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
           </div>
@@ -152,7 +152,7 @@ export default function App() {
         {/* Services Section */}
         <section className="py-section-gap px-margin-mobile md:px-margin-desktop relative overflow-hidden" id="services">
           <div className="absolute inset-0 z-0">
-            <div className="w-full h-full bg-cover bg-center opacity-30" style={{ backgroundImage: "url('./images/image_2.jpg')" }}></div>
+            <div className="w-full h-full bg-cover bg-center opacity-30" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=2400&auto=format&fit=crop')" }}></div>
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/50"></div>
           </div>
           <div className="max-w-container-max mx-auto relative z-10">
@@ -197,12 +197,12 @@ export default function App() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { img: "./images/image_3.jpg", tag: "Конференции", title: "Global Tech Summit" },
-                { img: "./images/image_4.jpg", tag: "Корпоративы", title: "Anniversary Gala" },
-                { img: "./images/image_5.jpg", tag: "Саммиты", title: "International Business Forum" },
-                { img: "./images/image_6.jpg", tag: "Свадьбы", title: "Villa Royale Nuptials" },
-                { img: "./images/image_7.jpg", tag: "Активации брендов", title: "Noir Perfume Launch" },
-                { img: "./images/image_8.jpg", tag: "Эксклюзивные церемонии", title: "Tuscan Sunset Wedding" }
+                { img: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?q=80&w=1200&auto=format&fit=crop", tag: "Конференции", title: "Global Tech Summit" },
+                { img: "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?q=80&w=1200&auto=format&fit=crop", tag: "Корпоративы", title: "Anniversary Gala" },
+                { img: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=1200&auto=format&fit=crop", tag: "Саммиты", title: "International Business Forum" },
+                { img: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1200&auto=format&fit=crop", tag: "Свадьбы", title: "Villa Royale Nuptials" },
+                { img: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=1200&auto=format&fit=crop", tag: "Активации брендов", title: "Noir Perfume Launch" },
+                { img: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1200&auto=format&fit=crop", tag: "Эксклюзивные церемонии", title: "Tuscan Sunset Wedding" }
               ].map((item, idx) => (
                 <div key={idx} className="relative group overflow-hidden rounded-2xl aspect-[4/3]">
                   <img alt={item.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" src={item.img} />
@@ -219,7 +219,7 @@ export default function App() {
         {/* Process Section (Sticky Scroll) */}
         <section className="relative bg-surface" id="process">
           <div className="absolute inset-0 z-0">
-            <div className="w-full h-full bg-cover bg-center opacity-40" style={{ backgroundImage: "url('./images/image_9.jpg')" }}></div>
+            <div className="w-full h-full bg-cover bg-center opacity-40" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1507676184212-d0c30a520ab4?q=80&w=2400&auto=format&fit=crop')" }}></div>
             <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background"></div>
           </div>
           <div className="relative z-10 py-16 px-margin-mobile md:px-margin-desktop text-center">
@@ -232,10 +232,10 @@ export default function App() {
               
               <div className="steps-wrapper relative z-10" id="process-steps-wrapper" ref={stepsWrapperRef}>
                 {[
-                  { num: '01', title: 'Бриф', desc: 'Глубокое погружение в цели и философию. Мы анализируем каждую деталь, чтобы понять истинную суть вашего бренда или личного запроса.', img: './images/image_10.jpg' },
-                  { num: '02', title: 'Концепция', desc: 'Разработка креативной идеи и визуального стиля. Мы создаем мудборды, скетчи и 3D-визуализации будущего пространства.', img: './images/image_11.jpg' },
-                  { num: '03', title: 'Планирование', desc: 'Детальная смета, логистика и тайминг. Ювелирная точность в расчетах и подборе подрядчиков высочайшего уровня.', img: './images/image_12.jpg' },
-                  { num: '04', title: 'Реализация', desc: 'Безупречный монтаж и контроль на площадке. Наша команда управляет сотнями процессов одновременно для идеального результата.', img: './images/image_13.jpg' },
+                  { num: '01', title: 'Бриф', desc: 'Глубокое погружение в цели и философию. Мы анализируем каждую деталь, чтобы понять истинную суть вашего бренда или личного запроса.', img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop' },
+                  { num: '02', title: 'Концепция', desc: 'Разработка креативной идеи и визуального стиля. Мы создаем мудборды, скетчи и 3D-визуализации будущего пространства.', img: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=800&auto=format&fit=crop' },
+                  { num: '03', title: 'Планирование', desc: 'Детальная смета, логистика и тайминг. Ювелирная точность в расчетах и подборе подрядчиков высочайшего уровня.', img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop' },
+                  { num: '04', title: 'Реализация', desc: 'Безупречный монтаж и контроль на площадке. Наша команда управляет сотнями процессов одновременно для идеального результата.', img: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=800&auto=format&fit=crop' },
                 ].map((step, idx) => (
                   <div key={idx} className={`step-panel px-margin-mobile md:px-margin-desktop transition-all duration-1000 ease-out`}>
                     <div className="max-w-2xl mx-auto flex flex-col items-center text-center">
@@ -266,7 +266,7 @@ export default function App() {
                     </div>
                     <div className="rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(237,192,110,0.2)] border border-primary/20 relative group">
                       <div className="absolute inset-0 bg-primary/10 mix-blend-overlay z-10 group-hover:opacity-0 transition-opacity duration-700"></div>
-                      <img alt="The Grand Event" className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" src="./images/image_14.jpg" />
+                      <img alt="The Grand Event" className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=1600&auto=format&fit=crop" />
                     </div>
                   </div>
                 </div>
@@ -285,7 +285,7 @@ export default function App() {
         <section className="py-section-gap px-margin-mobile md:px-margin-desktop" id="about">
           <div className="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="order-2 lg:order-1 rounded-2xl overflow-hidden relative shadow-2xl">
-              <img alt="Event setup" className="w-full h-[600px] object-cover grayscale-[20%] sepia-[10%] hover:scale-105 transition-transform duration-1000" src="./images/image_15.jpg" />
+              <img alt="Event setup" className="w-full h-[600px] object-cover grayscale-[20%] sepia-[10%] hover:scale-105 transition-transform duration-1000" src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1600&auto=format&fit=crop" />
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"></div>
             </div>
             <div className="order-1 lg:order-2 fade-in-up" id="about-content">
@@ -342,7 +342,7 @@ export default function App() {
         {/* Final CTA Section */}
         <section className="py-24 px-margin-mobile md:px-margin-desktop relative overflow-hidden" id="contacts">
           <div className="absolute inset-0 z-0">
-            <div className="w-full h-full bg-cover bg-center opacity-30 blur-sm" style={{ backgroundImage: "url('./images/image_16.jpg')" }}></div>
+            <div className="w-full h-full bg-cover bg-center opacity-30 blur-sm" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=2400&auto=format&fit=crop')" }}></div>
             <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/80 to-background/90"></div>
           </div>
           <div className="max-w-container-max mx-auto relative z-10 glass-panel p-8 md:p-16 rounded-3xl border border-primary/20 shadow-2xl">
